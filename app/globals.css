@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 :root {
   --background: #ffffff;
@@ -6,10 +7,21 @@
 }
 
 @theme inline {
+  --color-pink-50: oklch(95.09% 0.026 353.61);
+  --color-pink-100: oklch(91.13% 0.049 352.14);
+  --color-pink-200: oklch(82.41% 0.105 352.45);
+  --color-pink-300: oklch(73.09% 0.178 352.32);
+  --color-pink-400: oklch(64.52% 0.249 352.09);
+  --color-pink-500: oklch(54.3% 0.209 352);
+  --color-pink-600: oklch(46.35% 0.179 352.14);
+  --color-pink-700: oklch(38.15% 0.147 351.82);
+  --color-pink-800: oklch(30.8% 0.119 351.94);
+  --color-pink-900: oklch(22.78% 0.087 352.79);
+  --color-pink-950: oklch(17.34% 0.068 352.3);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--google-font-sans);
+  --font-serif: var(--google-font-serif);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -23,4 +35,24 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+  scroll-snap-type: y mandatory;
+}
+
+:root:has(div.scroll-lock) {
+  overflow-y: hidden !important;
+}
+
+.scroll-lock {
+  opacity: 0;
+  position: fixed;
+  display: inline;
 }
