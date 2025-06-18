@@ -1,6 +1,9 @@
 'use client'
+import BurgerIcon from '@/components/icon/burger'
 import logo from '@/public/logo-transparent.png'
 import {
+  AnimatePresence,
+  easeInOut,
   motion,
   useMotionValueEvent,
   useTime,
@@ -11,6 +14,8 @@ import { useLayoutEffect, useState } from 'react'
 const title = 'Cryptoland'
 
 export default function SlidesControls() {
+  const [hover, setHover] = useState('')
+  const [isOpen, setOpen] = useState(false)
   const [lock, setLock] = useState(true)
   const [typewrite, setTypewrite] = useState(0)
   const time = useTime()
@@ -77,6 +82,91 @@ export default function SlidesControls() {
           </motion.svg>
         </>
       )}
+      <BurgerIcon
+        className="fixed top-5 right-5 z-50 size-20 text-white"
+        active={isOpen}
+        onClick={() => {
+          setOpen((o) => !o)
+        }}
+      />
+      <AnimatePresence>
+        {isOpen ? (
+          <>
+            <motion.div
+              className="fixed top-0 z-30 w-full bg-[url(/bg-pattern.png)]"
+              initial={{ height: 0 }}
+              animate={{ height: '100vh' }}
+              exit={{ height: 0 }}
+            />
+            <motion.div
+              className="fixed top-0 z-30 w-full bg-pink-500/50"
+              initial={{ height: 0 }}
+              animate={{ height: '100vh' }}
+              exit={{ height: 0 }}
+              transition={{ delay: 0.1 }}
+            />
+            <motion.div
+              className="fixed top-0 z-30 w-full bg-pink-100/50"
+              initial={{ height: 0 }}
+              animate={{ height: '100vh' }}
+              exit={{ height: 0 }}
+              transition={{ delay: 0.2 }}
+            >
+              <AnimatePresence mode="sync">
+                <motion.span
+                  key={hover}
+                  initial={{ opacity: 0, letterSpacing: 0 }}
+                  animate={{ opacity: 0.1, letterSpacing: 0 }}
+                  exit={{ opacity: 0 }}
+                  className="absolute inset-0 top-auto bottom-16 text-center text-9xl font-bold text-nowrap uppercase opacity-10 transition-all"
+                  transition={{ ease: easeInOut }}
+                >
+                  {hover}
+                </motion.span>
+              </AnimatePresence>
+            </motion.div>
+            <motion.div
+              className="fixed top-0 z-30 flex h-screen w-full flex-col items-center justify-center gap-8 text-center"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <motion.div
+                className="fixed top-0 z-30 flex h-screen w-full flex-col items-center justify-center gap-8 text-center"
+                exit={{ opacity: 0 }}
+              >
+                <a
+                  href="#"
+                  onMouseOver={() => {
+                    setHover('Home')
+                  }}
+                  className="block w-full font-serif text-7xl font-bold uppercase"
+                >
+                  Home
+                </a>
+                <a
+                  onMouseOver={() => {
+                    setHover('About Us')
+                  }}
+                  href="#"
+                  className="block font-serif text-7xl font-bold uppercase hover:text-shadow-md"
+                >
+                  About Us
+                </a>
+                <a
+                  onMouseOver={() => {
+                    setHover('Contact Us')
+                  }}
+                  href="#"
+                  className="block font-serif text-7xl font-bold uppercase hover:text-shadow-md"
+                >
+                  Contact Us
+                </a>
+              </motion.div>
+            </motion.div>
+          </>
+        ) : null}
+      </AnimatePresence>
     </>
   )
 }
