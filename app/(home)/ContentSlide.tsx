@@ -54,7 +54,7 @@ export default function ContentSlide({
             <motion.div
               className={cn('prose m-16 bg-pink-50/70 p-8', className)}
             >
-              <h1 className="capitalize">{title}</h1>
+              <h1 className="font-serif capitalize">{title}</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Temporibus suscipit, magni et officiis omnis excepturi at

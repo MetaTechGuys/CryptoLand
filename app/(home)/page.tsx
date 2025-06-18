@@ -17,11 +17,10 @@ export default function Home() {
       <ContentSlide title="slide title 2" img={img2.src} className="ms-auto" />
       <ContentSlide title="slide title 3" img={img4.src} className="mx-auto" />
       <ContentSlide
-        title="slide title 3"
+        title="slide title 4"
         img={img3.src}
         className="mx-auto mt-auto"
       />
-      <ContentSlide title="slide title 4" img={img4.src} className="mx-auto" />
       <ContentSlide
         title="slide title 5"
         img={img5.src}
