@@ -60,11 +60,12 @@ export default function SlidesControls() {
             (typewrite > 0 && typewrite < title.length ? '_' : '')}
         </motion.h1>
       </motion.div>
-      {lock ? (
-        <div className="scroll-lock" />
-      ) : (
-        <>
+      <AnimatePresence>
+        {lock || isOpen ? (
+          <div className="scroll-lock" />
+        ) : (
           <motion.svg
+            exit={{ y: 50, opacity: 0 }}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5 }}
@@ -80,10 +81,10 @@ export default function SlidesControls() {
               ></path>
             </g>
           </motion.svg>
-        </>
-      )}
+        )}
+      </AnimatePresence>
       <BurgerIcon
-        className="fixed top-5 right-5 z-50 size-20 text-white"
+        className="fixed top-4 right-4 z-50 size-16 text-white"
         active={isOpen}
         onClick={() => {
           setOpen((o) => !o)
@@ -93,7 +94,7 @@ export default function SlidesControls() {
         {isOpen ? (
           <>
             <motion.div
-              className="fixed top-0 z-30 w-full bg-[url(/bg-pattern.png)]"
+              className="fixed top-0 z-30 w-full bg-pink-900/50 bg-[url(/bg-pattern.png)]"
               initial={{ height: 0 }}
               animate={{ height: '100vh' }}
               exit={{ height: 0 }}
@@ -135,16 +136,19 @@ export default function SlidesControls() {
                 className="fixed top-0 z-30 flex h-screen w-full flex-col items-center justify-center gap-8 text-center"
                 exit={{ opacity: 0 }}
               >
-                <a
+                <motion.a
                   href="#"
+                  initial={{ opacity: 0, x: 500 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0 }}
                   onMouseOver={() => {
                     setHover('Home')
                   }}
                   className="block w-full font-serif text-7xl font-bold uppercase"
                 >
                   Home
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   onMouseOver={() => {
                     setHover('About Us')
                   }}
@@ -152,8 +156,8 @@ export default function SlidesControls() {
                   className="block font-serif text-7xl font-bold uppercase hover:text-shadow-md"
                 >
                   About Us
-                </a>
-                <a
+                </motion.a>
+                <motion.a
                   onMouseOver={() => {
                     setHover('Contact Us')
                   }}
@@ -161,7 +165,7 @@ export default function SlidesControls() {
                   className="block font-serif text-7xl font-bold uppercase hover:text-shadow-md"
                 >
                   Contact Us
-                </a>
+                </motion.a>
               </motion.div>
             </motion.div>
           </>
