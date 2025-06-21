@@ -6,9 +6,11 @@ import {
   easeInOut,
   motion,
   useMotionValueEvent,
+  useScroll,
   useTime,
   useTransform,
 } from 'motion/react'
+import Link from 'next/link'
 import { useLayoutEffect, useState } from 'react'
 
 const title = 'Cryptoland'
@@ -17,6 +19,7 @@ export default function SlidesControls() {
   const [hover, setHover] = useState('')
   const [isOpen, setOpen] = useState(false)
   const [lock, setLock] = useState(true)
+  const [ended, setEnded] = useState(false)
   const [typewrite, setTypewrite] = useState(0)
   const time = useTime()
   const rotateY = useTransform(time, [500, 700], [90, 0], { clamp: true })
@@ -24,6 +27,9 @@ export default function SlidesControls() {
   const width = useTransform(time, [1500, 2000], [0, title.length * 100], {
     clamp: true,
   })
+  const { scrollYProgress } = useScroll()
+  const isEnded = useTransform(() => !!Math.floor(scrollYProgress.get()))
+  useMotionValueEvent(isEnded, 'change', setEnded)
   const y = useTransform(time, [3000, 3500], [400, 0], { clamp: true })
   const scale = useTransform(time, [3000, 3500], [3, 1], { clamp: true })
   useMotionValueEvent(width, 'change', (w) => {
@@ -63,7 +69,7 @@ export default function SlidesControls() {
       <AnimatePresence>
         {lock || isOpen ? (
           <div className="scroll-lock" />
-        ) : (
+        ) : !ended ? (
           <motion.svg
             exit={{ y: 50, opacity: 0 }}
             initial={{ y: 50, opacity: 0 }}
@@ -81,15 +87,21 @@ export default function SlidesControls() {
               ></path>
             </g>
           </motion.svg>
-        )}
+        ) : null}
       </AnimatePresence>
-      <BurgerIcon
-        className="fixed top-4 right-4 z-50 size-16 text-white"
-        active={isOpen}
-        onClick={() => {
-          setOpen((o) => !o)
-        }}
-      />
+      {!lock && (
+        <motion.button
+          className="fixed end-4 top-4 z-50 text-white"
+          initial={{ y: -100 }}
+          animate={{ y: 0 }}
+          exit={{ y: -100 }}
+          onClick={() => {
+            setOpen((o) => !o)
+          }}
+        >
+          <BurgerIcon className="size-16" active={isOpen} />
+        </motion.button>
+      )}
       <AnimatePresence>
         {isOpen ? (
           <>
@@ -136,41 +148,76 @@ export default function SlidesControls() {
                 className="fixed top-0 z-30 flex h-screen w-full flex-col items-center justify-center gap-8 text-center"
                 exit={{ opacity: 0 }}
               >
-                <motion.a
-                  href="#"
-                  initial={{ opacity: 0, x: 500 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0 }}
+                <Link
+                  href="/"
+                  scroll
                   onMouseOver={() => {
                     setHover('Home')
                   }}
-                  className="block w-full font-serif text-7xl font-bold uppercase"
+                  onClick={() => {
+                    setOpen(false)
+                  }}
+                  className="contents"
                 >
-                  Home
-                </motion.a>
-                <motion.a
+                  <MenuItem title="Home" />
+                </Link>
+                <Link
+                  scroll
                   onMouseOver={() => {
                     setHover('About Us')
                   }}
-                  href="#"
-                  className="block font-serif text-7xl font-bold uppercase hover:text-shadow-md"
+                  onClick={() => {
+                    setOpen(false)
+                  }}
+                  href="/v1"
+                  className="contents"
                 >
-                  About Us
-                </motion.a>
-                <motion.a
+                  <MenuItem title="About Us" />
+                </Link>
+                <Link
                   onMouseOver={() => {
                     setHover('Contact Us')
                   }}
+                  onClick={() => {
+                    setOpen(false)
+                  }}
                   href="#"
-                  className="block font-serif text-7xl font-bold uppercase hover:text-shadow-md"
+                  className="contents"
                 >
-                  Contact Us
-                </motion.a>
+                  <MenuItem title="Contact Us" />
+                </Link>
               </motion.div>
             </motion.div>
           </>
         ) : null}
       </AnimatePresence>
     </>
+  )
+}
+
+interface MenuItemProps {
+  title: string
+  link?: string
+}
+
+function MenuItem({ title }: MenuItemProps) {
+  return (
+    <motion.div className="grid grid-cols-1 grid-rows-1 font-serif text-7xl font-bold uppercase">
+      <motion.div
+        initial={{ y: -200, opacity: 0 }}
+        animate={{ y: 0, opacity: 1, transition: { delay: 0.5 } }}
+        className="pointer-events-none z-10 col-start-1 row-start-1"
+      >
+        {title}
+      </motion.div>
+      <motion.div
+        initial={{ y: -200, opacity: 0 }}
+        animate={{ y: 4, x: 4, opacity: 0.2, transition: { delay: 0.55 } }}
+        whileHover={{ x: 8, y: 8, opacity: 0.3, transition: { delay: 0 } }}
+        className="col-start-1 row-start-1 text-pink-800"
+      >
+        {title}
+      </motion.div>
+    </motion.div>
   )
 }

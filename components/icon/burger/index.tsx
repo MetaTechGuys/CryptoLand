@@ -4,22 +4,16 @@ import './burger-icon.css'
 interface BurgerIconProps {
   active?: boolean
   className?: string
-  onClick?: VoidFunction
 }
 
 /**
  * @ref: https://codepen.io/ainalem/pen/LJYRxz
  */
-export default function BurgerIcon({
-  active,
-  className,
-  onClick,
-}: BurgerIconProps) {
+export default function BurgerIcon({ active, className }: BurgerIconProps) {
   return (
     <svg
-      className={cn('ham hamRotate ham7 cursor-pointer', className, { active })}
+      className={cn('ham hamRotate ham7', className, { active })}
       viewBox="0 0 100 100"
-      onClick={onClick}
     >
       <path
         className="line top"
