@@ -1,6 +1,7 @@
 'use client'
 import BurgerIcon from '@/components/icon/burger'
 import logo from '@/public/logo-transparent.png'
+import { useHash } from '@/utils/route'
 import {
   AnimatePresence,
   easeInOut,
@@ -11,11 +12,16 @@ import {
   useTransform,
 } from 'motion/react'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
 import { useLayoutEffect, useState } from 'react'
 
 const title = 'Cryptoland'
 
 export default function SlidesControls() {
+  const hash = useHash()
+  const haveHash = hash.length > 1
+  const { back } = useRouter()
+
   const [hover, setHover] = useState('')
   const [isOpen, setOpen] = useState(false)
   const [lock, setLock] = useState(true)
@@ -30,7 +36,7 @@ export default function SlidesControls() {
   const { scrollYProgress } = useScroll()
   const isEnded = useTransform(() => !!Math.floor(scrollYProgress.get()))
   useMotionValueEvent(isEnded, 'change', setEnded)
-  const y = useTransform(time, [3000, 3500], [400, 0], { clamp: true })
+  const y = useTransform(time, [3000, 3500], [400, 18], { clamp: true })
   const scale = useTransform(time, [3000, 3500], [3, 1], { clamp: true })
   useMotionValueEvent(width, 'change', (w) => {
     setTypewrite(Math.floor(w / 100))
@@ -53,7 +59,7 @@ export default function SlidesControls() {
   return (
     <>
       <motion.div
-        className="fixed inset-0 bottom-auto z-50 flex items-center justify-center gap-2 py-4"
+        className="fixed inset-0 bottom-auto z-40 ms-8 flex max-w-min min-w-50 origin-left scale-100! items-center gap-2 py-4 sm:max-w-full sm:origin-center sm:justify-center sm:ps-0"
         style={{ y, scale }}
       >
         <motion.img
@@ -61,7 +67,7 @@ export default function SlidesControls() {
           src={logo.src}
           style={{ rotateY, scale: iconScale }}
         />
-        <motion.h1 className="overflow-hidden font-serif text-3xl font-bold tracking-widest text-nowrap uppercase text-shadow-xs">
+        <motion.h1 className="overflow-hidden font-serif text-xl font-bold tracking-widest text-nowrap uppercase text-shadow-xs sm:text-2xl md:text-3xl">
           {title.substring(0, typewrite) +
             (typewrite > 0 && typewrite < title.length ? '_' : '')}
         </motion.h1>
@@ -96,10 +102,22 @@ export default function SlidesControls() {
           animate={{ y: 0 }}
           exit={{ y: -100 }}
           onClick={() => {
-            setOpen((o) => !o)
+            if (haveHash) {
+              back()
+            } else {
+              if (isOpen) {
+                setOpen(false)
+              } else {
+                setOpen(true)
+              }
+            }
           }}
         >
-          <BurgerIcon className="size-16" active={isOpen} />
+          <BurgerIcon
+            className="size-18"
+            active={isOpen || haveHash}
+            menu={!haveHash}
+          />
         </motion.button>
       )}
       <AnimatePresence>
@@ -202,7 +220,7 @@ interface MenuItemProps {
 
 function MenuItem({ title }: MenuItemProps) {
   return (
-    <motion.div className="grid grid-cols-1 grid-rows-1 font-serif text-7xl font-bold uppercase">
+    <motion.div className="grid grid-cols-1 grid-rows-1 font-serif text-3xl font-bold uppercase sm:text-5xl md:text-7xl">
       <motion.div
         initial={{ y: -200, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { delay: 0.5 } }}

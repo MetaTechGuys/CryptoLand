@@ -49,10 +49,13 @@ export default function ContentSlide({
             initial={{ y: dir * 500, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -1 * dir * 500, opacity: 0 }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 0.3 }}
           >
             <motion.div
-              className={cn('prose m-16 bg-pink-50/70 p-8', className)}
+              className={cn(
+                'prose m-8 bg-pink-50/70 p-8 md:mx-16 lg:mx-32',
+                className
+              )}
             >
               <h1 className="font-serif capitalize">{title}</h1>
               <p>
