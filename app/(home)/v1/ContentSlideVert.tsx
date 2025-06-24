@@ -30,6 +30,7 @@ export default function ContentSlideVert({
       exit={{ x: '50vw', opacity: 0 }}
       transition={{ duration: 1 }}
     >
+      <div className="scroll-lock" />
       <motion.div className={cn('prose m-16 bg-pink-50/70 p-8')}>
         <h1 className="font-serif capitalize">{title}</h1>
         <p>

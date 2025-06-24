@@ -46,10 +46,10 @@ export default function ContentSlide({
           <motion.div
             className="fixed inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat"
             style={bgImgStyle}
-            initial={{ y: dir * 500, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -1 * dir * 500, opacity: 0 }}
-            transition={{ duration: 0.3 }}
+            initial={{ y: dir * 500, opacity: 0, scale: 1.2 }}
+            animate={{ y: 0, opacity: 1, scale: 1.2 }}
+            exit={{ opacity: 0, scale: 1 }}
+            transition={{ duration: 1 }}
           >
             <motion.div
               className={cn(
@@ -57,7 +57,7 @@ export default function ContentSlide({
                 className
               )}
             >
-              <h1 className="font-serif capitalize">{title}</h1>
+              <h1 className="font-serif capitalize">{title}qq</h1>
               <p>
                 Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Temporibus suscipit, magni et officiis omnis excepturi at

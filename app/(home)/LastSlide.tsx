@@ -17,27 +17,43 @@ export default function LastSlide() {
     backgroundImage: `url(${bgimg.src})`,
   }
   const hash = useHash()
-
+  //
   return (
     <section ref={ref} className="h-screen snap-end">
       <AnimatePresence propagate>
         {inView ? (
           <>
             <motion.div
-              className="fixed inset-0 flex items-center justify-center bg-pink-900/60 bg-cover bg-center bg-no-repeat bg-blend-color"
-              style={bgImgStyle}
-              initial={{ y: 500, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 500, opacity: 0 }}
-              transition={{ duration: 1 }}
-            ></motion.div>
-            <motion.div
-              className="fixed inset-0 flex flex-col items-center justify-center gap-16 bg-[url(/bg-pattern.png)] md:flex-row"
-              initial={{ y: 500, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: 500, opacity: 0 }}
-              transition={{ duration: 1 }}
+              className="fixed inset-0 flex flex-col items-center justify-center gap-16 overflow-hidden bg-black/80 md:flex-row"
+              initial={{ y: '100vh' }}
+              animate={{ y: 0, transition: { duration: 0.7 } }}
+              exit={{
+                y: '100vh',
+                transition: { duration: 2, delay: 0.2 },
+              }}
             >
+              <AnimatePresence propagate>
+                <motion.div
+                  key="bg"
+                  className="absolute inset-0 flex items-center justify-center bg-pink-900/60 bg-cover bg-center bg-no-repeat bg-blend-color blur-xs"
+                  style={bgImgStyle}
+                  initial={{ opacity: 0 }}
+                  animate={{
+                    opacity: 1,
+                    scale: 1.1,
+                    transition: { delay: 0.45, duration: 1.5 },
+                  }}
+                />
+                <div className="absolute inset-0 bg-[url(/bg-pattern.png)]" />
+                <motion.div
+                  key="cover"
+                  className="absolute inset-0 bg-black"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 0 }}
+                  exit={{ opacity: 1 }}
+                  transition={{ duration: 2 }}
+                />
+              </AnimatePresence>
               <a href="#hotel" className="contents">
                 <MenuItem title="Hotel" delay={0.2} />
               </a>
@@ -94,7 +110,11 @@ function MenuItem({ title, delay = 0 }: MenuItemProps) {
     >
       <motion.div
         initial={{ y: -200, opacity: 0 }}
-        animate={{ y: 0, opacity: 1, transition: { delay: 0.5 + delay } }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: { delay: 1.0 + delay },
+        }}
         className="pointer-events-none z-10 col-start-1 row-start-1"
       >
         {title}
@@ -105,7 +125,7 @@ function MenuItem({ title, delay = 0 }: MenuItemProps) {
           y: 4,
           x: 4,
           opacity: 0.2,
-          transition: { delay: 0.55 + delay },
+          transition: { delay: 1.05 + delay },
         }}
         className="col-start-1 row-start-1 text-white"
       >
