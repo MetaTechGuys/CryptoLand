@@ -1,18 +1,21 @@
 import type { Metadata } from 'next'
-import { DM_Serif_Display, Montserrat } from 'next/font/google'
+import { Orbitron, Inter } from 'next/font/google'
 import './globals.css'
 import { cn } from '@/utils/tailwind'
 import { AnimatePresence } from 'motion/react'
 
-const sans = Montserrat({
-  variable: '--google-font-sans',
+const sans = Inter({
+  variable: '--google-sans',
+  weight: ['400', '700'],
   subsets: ['latin'],
+  fallback: ['Arial', 'Thoma', 'sans-serif'],
 })
 
-const serif = DM_Serif_Display({
-  variable: '--google-font-serif',
-  weight: '400',
+const serif = Orbitron({
+  variable: '--google-serif',
+  weight: '900',
   subsets: ['latin'],
+  fallback: ['Georgia', 'Times New Roman', 'serif'],
 })
 
 export const metadata: Metadata = {
