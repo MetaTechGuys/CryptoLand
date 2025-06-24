@@ -1,18 +1,22 @@
+'use client'
 import { useCallback, useEffect, useState } from 'react'
 
 export const useHash = () => {
-  const [hash, setHash] = useState(() => window.location.hash)
+  const g = typeof window !== 'undefined' ? window : undefined
+  const [hash, setHash] = useState(g?.location.hash ?? '')
 
   const hashChangeHandler = useCallback(() => {
-    setHash(window.location.hash)
-  }, [])
+    if (g) {
+      setHash(g.location.hash)
+    }
+  }, [g])
 
   useEffect(() => {
-    window.addEventListener('hashchange', hashChangeHandler)
+    g?.addEventListener('hashchange', hashChangeHandler)
     return () => {
-      window.removeEventListener('hashchange', hashChangeHandler)
+      g?.removeEventListener('hashchange', hashChangeHandler)
     }
-  }, [hashChangeHandler])
+  }, [hashChangeHandler, g])
 
   return hash
 }
