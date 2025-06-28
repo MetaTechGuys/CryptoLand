@@ -1,8 +1,8 @@
-import type { Metadata } from 'next'
-import { Orbitron, Inter } from 'next/font/google'
-import './globals.css'
 import { cn } from '@/utils/tailwind'
-import { AnimatePresence } from 'motion/react'
+import type { Metadata } from 'next'
+import { Inter, Orbitron } from 'next/font/google'
+import './globals.css'
+// import PWACore from '@/utils/service-worker'
 
 const sans = Inter({
   variable: '--google-sans',
@@ -40,7 +40,8 @@ export default function RootLayout({
           'min-h-screen w-screen overflow-x-hidden antialiased'
         )}
       >
-        <AnimatePresence>{children}</AnimatePresence>
+        {children}
+        {/* <PWACore /> */}
       </body>
     </html>
   )

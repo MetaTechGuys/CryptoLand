@@ -1,22 +1,11 @@
 'use client'
-import { useHash } from '@/utils/route'
 import { AnimatePresence, motion, useInView } from 'motion/react'
-import { CSSProperties, useRef } from 'react'
-import ContentSlideVert from './v1/ContentSlideVert'
-import img1 from '@/public/Oystra-Residences-1.jpg'
-import img2 from '@/public/dkjnb.jpg'
-import bgimg from '@/public/Oystra_Al_Marjan_Island_by_Zaha_Hadid.webp'
-import img4 from '@/public/Oystra_Al_Marjan_Island_by_Zaha_Hadid_2.webp'
+import { useRef } from 'react'
 
 export default function LastSlide() {
   const ref = useRef<HTMLElement>(null)
   const inView = useInView(ref, { amount: 0.1 })
   // const inCenter = useInView(ref, { amount: 'all' })
-
-  const bgImgStyle: CSSProperties = {
-    backgroundImage: `url(${bgimg.src})`,
-  }
-  const hash = useHash()
   //
   return (
     <section ref={ref} className="h-screen snap-end">
@@ -35,8 +24,7 @@ export default function LastSlide() {
               <AnimatePresence propagate>
                 <motion.div
                   key="bg"
-                  className="absolute inset-0 flex items-center justify-center bg-pink-900/60 bg-cover bg-center bg-no-repeat bg-blend-color blur-xs"
-                  style={bgImgStyle}
+                  className="absolute inset-0 flex items-center justify-center bg-pink-900/60 bg-[url(/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates_3.jpg)] bg-cover bg-[80%] bg-no-repeat bg-blend-color md:bg-[url(/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates.jpg)] md:bg-center"
                   initial={{ opacity: 0 }}
                   animate={{
                     opacity: 1,
@@ -57,38 +45,14 @@ export default function LastSlide() {
               <a href="#hotel" className="contents">
                 <MenuItem title="Hotel" delay={0.2} />
               </a>
-              <a href="#exchange" className="contents">
-                <MenuItem title="Exchange" delay={0.3} />
+              <a href="#features" className="contents">
+                <MenuItem title="Features" delay={0.3} />
               </a>
-              <a href="#casino" className="contents">
-                <MenuItem title="Casino" delay={0.1} />
+              <a href="#club" className="contents">
+                <MenuItem title="Club" delay={0.1} />
               </a>
             </motion.div>
           </>
-        ) : null}
-        {hash === '#casino' ? (
-          <ContentSlideVert
-            key="casino"
-            title="Casino"
-            className="fixed inset-0"
-            img={img1.src}
-          />
-        ) : null}
-        {hash === '#hotel' ? (
-          <ContentSlideVert
-            key="hotel"
-            title="hotel"
-            className="fixed inset-0"
-            img={img2.src}
-          />
-        ) : null}
-        {hash === '#exchange' ? (
-          <ContentSlideVert
-            key="exchange"
-            title="Exchange"
-            className="fixed inset-0"
-            img={img4.src}
-          />
         ) : null}
       </AnimatePresence>
     </section>

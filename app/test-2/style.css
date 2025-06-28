@@ -1,0 +1,15 @@
+
+.bg-animated-hue {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	text-align: center;
+	font-weight: bold;
+	animation: animate 20s linear alternate;
+}
+
+@keyframes animate {
+  from {background-color: white;}
+  to {background-color: 838383;}
+}

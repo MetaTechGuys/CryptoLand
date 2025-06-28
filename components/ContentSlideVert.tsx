@@ -7,6 +7,7 @@ interface SlideProps {
   title: string
   img: string
   className?: string
+  innerClassName?: string
 }
 
 export default function ContentSlideVert({
@@ -14,6 +15,7 @@ export default function ContentSlideVert({
   img,
   children,
   className,
+  innerClassName,
 }: PropsWithChildren<SlideProps>) {
   const bgImgStyle: CSSProperties = {
     backgroundImage: `url(${img})`,
@@ -31,7 +33,9 @@ export default function ContentSlideVert({
       transition={{ duration: 1 }}
     >
       <div className="scroll-lock" />
-      <motion.div className={cn('prose m-16 bg-pink-50/70 p-8')}>
+      <motion.div
+        className={cn('prose m-16 bg-pink-50/70 p-8', innerClassName)}
+      >
         <h1 className="font-serif capitalize">{title}</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus

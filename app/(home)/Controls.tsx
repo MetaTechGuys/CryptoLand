@@ -1,6 +1,6 @@
 'use client'
 import BurgerIcon from '@/components/icon/burger'
-import logo from '@/public/logo-transparent.png'
+import logo from '@/public/logo/cryptoland-white-mono-sm.png'
 import { useHash } from '@/utils/route'
 import {
   AnimatePresence,
@@ -11,6 +11,7 @@ import {
   useTime,
   useTransform,
 } from 'motion/react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useLayoutEffect, useState } from 'react'
@@ -29,7 +30,7 @@ export default function SlidesControls() {
   const [typewrite, setTypewrite] = useState(0)
   const time = useTime()
   const rotateY = useTransform(time, [500, 700], [90, 0], { clamp: true })
-  const iconScale = useTransform(time, [1000, 1300], [2, 1], { clamp: true })
+  const iconScale = useTransform(time, [1000, 1300], [4, 2], { clamp: true })
   const width = useTransform(time, [1500, 2000], [0, title.length * 100], {
     clamp: true,
   })
@@ -59,18 +60,22 @@ export default function SlidesControls() {
   return (
     <>
       <motion.div
-        className="fixed inset-0 bottom-auto z-40 ms-8 flex max-w-min min-w-50 origin-left scale-100! items-center gap-2 py-4 sm:max-w-full sm:origin-center sm:justify-center sm:ps-0"
+        className="fixed inset-0 bottom-auto z-40 ms-8 flex max-w-min min-w-50 origin-left scale-100! flex-col items-center gap-4 py-4 sm:max-w-full sm:origin-center sm:justify-center sm:ps-0"
         style={{ y, scale }}
       >
-        <motion.img
-          className="size-8 rounded-full object-cover"
-          src={logo.src}
-          style={{ rotateY, scale: iconScale }}
-        />
-        <motion.h1 className="overflow-hidden font-serif text-xl font-bold tracking-widest text-nowrap uppercase text-shadow-xs sm:text-2xl md:text-3xl">
-          {title.substring(0, typewrite) +
-            (typewrite > 0 && typewrite < title.length ? '_' : '')}
-        </motion.h1>
+        <Link className="contents" href="/">
+          <motion.div style={{ rotateY, scale: iconScale }}>
+            <Image
+              src={logo}
+              alt={title}
+              className="h-8 w-min brightness-[100]"
+            />
+          </motion.div>
+          <motion.h1 className="--neonText font-serif text-xl font-bold tracking-widest text-nowrap uppercase text-shadow-xs sm:text-2xl md:text-3xl">
+            {title.substring(0, typewrite) +
+              (typewrite > 0 && typewrite < title.length ? '_' : '')}
+          </motion.h1>
+        </Link>
       </motion.div>
       <AnimatePresence>
         {lock || isOpen ? (
@@ -187,10 +192,23 @@ export default function SlidesControls() {
                   onClick={() => {
                     setOpen(false)
                   }}
-                  href="/v1"
+                  href="/about"
                   className="contents"
                 >
                   <MenuItem title="About Us" />
+                </Link>
+                <Link
+                  scroll
+                  onMouseOver={() => {
+                    setHover('About Us')
+                  }}
+                  onClick={() => {
+                    setOpen(false)
+                  }}
+                  href="/features"
+                  className="contents"
+                >
+                  <MenuItem title="Features" />
                 </Link>
                 <Link
                   onMouseOver={() => {
@@ -199,7 +217,7 @@ export default function SlidesControls() {
                   onClick={() => {
                     setOpen(false)
                   }}
-                  href="#"
+                  href="/contact"
                   className="contents"
                 >
                   <MenuItem title="Contact Us" />
