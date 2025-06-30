@@ -2,6 +2,7 @@ import { cn } from '@/utils/tailwind'
 import type { Metadata } from 'next'
 import { Inter, Orbitron } from 'next/font/google'
 import './globals.css'
+import './animations.css'
 // import PWACore from '@/utils/service-worker'
 
 const sans = Inter({

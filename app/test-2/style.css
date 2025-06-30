@@ -6,10 +6,22 @@
 	position: relative;
 	text-align: center;
 	font-weight: bold;
-	animation: animate 20s linear alternate;
+	animation: animate 60s linear forwards infinite;
 }
 
 @keyframes animate {
-  from {background-color: white;}
-  to {background-color: 838383;}
+	/* 00 */
+  from {background-color: #07207b;}
+	/* 06 */
+  22% {background-color: #07207b;}
+  25% {background-color: #fee301;}
+  28% {background-color: #fcffb5;}
+	/* 12 */
+  50% {background-color: #fcffb5;}
+	/* 18 */
+  72% {background-color: #fcffb5;}
+  75% {background-color: #ce2b23;}
+  78% {background-color: #07207b;}
+	/* 24 */
+  to {background-color: #07207b;}
 }

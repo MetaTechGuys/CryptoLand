@@ -1,3 +1,4 @@
+import { cn } from '@/utils/tailwind'
 import {
   AnimatePresence,
   motion,
@@ -10,10 +11,14 @@ import { CSSProperties, PropsWithChildren, useRef, useState } from 'react'
 
 export interface BaseSlideProps {
   img?: string
+  darken?: true
+  className?: string
 }
 
-export default function BaseSldie({
+export function BaseSldie({
+  className,
   children,
+  darken,
   img,
 }: PropsWithChildren<BaseSlideProps>) {
   const [dir, setDirection] = useState(0)
@@ -34,23 +39,54 @@ export default function BaseSldie({
   })
 
   return (
-    <section ref={ref} className="min-h-screen snap-center">
+    <section ref={ref} className={cn('min-h-screen snap-center', className)}>
       <AnimatePresence>
         {inView ? (
           <>
             <motion.div
-              className="fixed inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat"
+              className={cn(
+                'fixed inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat'
+              )}
               style={bgImgStyle}
-              initial={{ y: dir * 500, opacity: 0, backgroundSize: '120%' }}
-              animate={{ y: 0, opacity: 1, backgroundSize: '120%' }}
-              exit={{ opacity: 0, backgroundSize: '100%' }}
+              initial={{ y: dir * 500, opacity: 1 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ opacity: 1 }}
               transition={{ duration: 1 }}
             >
-              {children}
+              <div
+                className={darken ? 'size-full bg-[url(/bg-pattern.png)]' : ''}
+              >
+                {children}
+              </div>
             </motion.div>
           </>
         ) : null}
       </AnimatePresence>
+    </section>
+  )
+}
+
+export function SlideHero({
+  className,
+  children,
+  darken,
+  img,
+}: PropsWithChildren<BaseSlideProps>) {
+  const bgImgStyle: CSSProperties = {
+    backgroundImage: `url(${img})`,
+  }
+  return (
+    <section className={cn('min-h-screen snap-center', className)}>
+      <div
+        className={cn(
+          'fixed inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat'
+        )}
+        style={bgImgStyle}
+      >
+        <div className={darken ? 'size-full bg-[url(/bg-pattern.png)]' : ''}>
+          {children}
+        </div>
+      </div>
     </section>
   )
 }

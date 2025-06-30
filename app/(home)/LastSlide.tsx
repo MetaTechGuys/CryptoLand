@@ -42,14 +42,14 @@ export default function LastSlide() {
                   transition={{ duration: 2 }}
                 />
               </AnimatePresence>
-              <a href="#hotel" className="contents">
-                <MenuItem title="Hotel" delay={0.2} />
+              <a href="#sports" className="contents">
+                <MenuItem title="Sports" delay={0.2} />
               </a>
-              <a href="#features" className="contents">
-                <MenuItem title="Features" delay={0.3} />
+              <a href="#health" className="contents">
+                <MenuItem title="Health" delay={0.3} />
               </a>
-              <a href="#club" className="contents">
-                <MenuItem title="Club" delay={0.1} />
+              <a href="#business" className="contents">
+                <MenuItem title="Business" delay={0.1} />
               </a>
             </motion.div>
           </>

@@ -18,37 +18,62 @@ import { useLayoutEffect, useState } from 'react'
 
 const title = 'Cryptoland'
 
-export default function SlidesControls() {
+interface SlidesControlsProps {
+  skipAnimates?: boolean
+}
+
+export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
   const hash = useHash()
   const haveHash = hash.length > 1
+
+  function ctlRange(r: [number, number]): [number, number] {
+    return !skipAnimates ? r : [-1, 0]
+  }
+  function ctlDelay(d: number): number {
+    return !skipAnimates ? d : 0
+  }
+
   const { back } = useRouter()
 
   const [hover, setHover] = useState('')
   const [isOpen, setOpen] = useState(false)
   const [lock, setLock] = useState(true)
   const [ended, setEnded] = useState(false)
-  const [typewrite, setTypewrite] = useState(0)
+  const [typewrite, setTypewrite] = useState(!skipAnimates ? 0 : title.length)
   const time = useTime()
-  const rotateY = useTransform(time, [500, 700], [90, 0], { clamp: true })
-  const iconScale = useTransform(time, [1000, 1300], [4, 2], { clamp: true })
-  const width = useTransform(time, [1500, 2000], [0, title.length * 100], {
+  const rotateY = useTransform(time, ctlRange([500, 700]), [90, 0], {
     clamp: true,
   })
+  const iconScale = useTransform(time, ctlRange([1000, 1300]), [4, 2], {
+    clamp: true,
+  })
+  const width = useTransform(
+    time,
+    ctlRange([1500, 2000]),
+    [0, title.length * 100],
+    {
+      clamp: true,
+    }
+  )
   const { scrollYProgress } = useScroll()
   const isEnded = useTransform(() => !!Math.floor(scrollYProgress.get()))
   useMotionValueEvent(isEnded, 'change', setEnded)
-  const y = useTransform(time, [3000, 3500], [400, 18], { clamp: true })
-  const scale = useTransform(time, [3000, 3500], [3, 1], { clamp: true })
+  const y = useTransform(time, ctlRange([3000, 3500]), [400, 18], {
+    clamp: true,
+  })
+  const scale = useTransform(time, ctlRange([3000, 3500]), [3, 1], {
+    clamp: true,
+  })
   useMotionValueEvent(width, 'change', (w) => {
     setTypewrite(Math.floor(w / 100))
   })
   useMotionValueEvent(time, 'change', (t) => {
-    if (lock && t >= 4000) {
+    if (lock && t >= ctlDelay(4000)) {
       setLock(false)
     }
   })
   useMotionValueEvent(time, 'change', (t) => {
-    if (t >= 6000) {
+    if (t >= ctlDelay(6000)) {
       time.destroy()
     }
   })
@@ -238,7 +263,7 @@ interface MenuItemProps {
 
 function MenuItem({ title }: MenuItemProps) {
   return (
-    <motion.div className="grid grid-cols-1 grid-rows-1 font-serif text-3xl font-bold uppercase sm:text-5xl md:text-7xl">
+    <div className="grid grid-cols-1 grid-rows-1 font-serif text-3xl font-bold uppercase sm:text-5xl md:text-7xl">
       <motion.div
         initial={{ y: -200, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { delay: 0.5 } }}
@@ -254,6 +279,6 @@ function MenuItem({ title }: MenuItemProps) {
       >
         {title}
       </motion.div>
-    </motion.div>
+    </div>
   )
 }

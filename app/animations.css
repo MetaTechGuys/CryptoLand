@@ -1,0 +1,142 @@
+:root {
+  --vtd: 1s;
+}
+
+::view-transition-image-pair(page) {
+  perspective: 1050px;
+}
+::view-transition-old(page) {
+  z-index: -1;
+}
+::view-transition-new(page) {
+  z-index: 1;
+}
+
+::view-transition-old(.roll-up) {
+  animation: var(--vtd, 0.5s) linear both rotate-down;
+  transform-origin: top;
+}
+
+::view-transition-new(.roll-up) {
+  animation: var(--vtd, 0.5s) linear both reverse rotate-up;
+  transform-origin: bottom;
+}
+
+::view-transition-old(.roll-down) {
+  animation: var(--vtd, 0.5s) linear both rotate-up;
+  transform-origin: bottom;
+}
+
+::view-transition-new(.roll-down) {
+  animation: var(--vtd, 0.5s) linear both reverse rotate-down;
+  transform-origin: top;
+}
+
+
+@keyframes rotate-down {
+	0% {
+    transform: rotateX(0);
+	}
+	50% {
+    scale: 0.65;
+    opacity: 0;
+	}
+	100% {
+    transform: rotateX(90deg);
+	}
+}
+
+@keyframes rotate-up {
+	0% {
+    transform: rotateX(0);
+	}
+	50% {
+    scale: 0.65;
+    opacity: 0;
+	}
+	100% {
+    transform: rotateX(-90deg);
+	}
+}
+
+::view-transition-old(.slide-up) {
+  animation: var(--vtd, 0.5s) linear both slide-down;
+}
+
+::view-transition-new(.slide-up) {
+  animation: var(--vtd, 0.5s) linear both reverse slide-up;
+}
+
+::view-transition-old(.slide-down) {
+  animation: var(--vtd, 0.5s) linear both slide-up;
+}
+
+::view-transition-new(.slide-down) {
+  animation: var(--vtd, 0.5s) linear both reverse slide-down;
+}
+
+@keyframes slide-up {
+	0% {
+    transform: translate3d(0, 0, 0);
+	}
+	20% {
+    transform: translate3d(0, 0, -120px);
+	}
+	100% {
+    opacity: 0;
+    transform: translate3d(0, 900px, 0);
+	}
+}
+
+@keyframes slide-down {
+	0% {
+    transform: translate3d(0, 0, 0);
+	}
+	20% {
+    transform: translate3d(0, 0, -120px);
+	}
+	100% {
+    opacity: 0;
+    transform: translate3d(0, -900px, 0);
+	}
+}
+
+::view-transition-old(.scroll-up) {
+  animation: var(--vtd, 0.5s) linear both scroll-down;
+}
+
+::view-transition-new(.scroll-up) {
+  animation: var(--vtd, 0.5s) linear both reverse scroll-up;
+}
+
+::view-transition-old(.scroll-down) {
+  animation: var(--vtd, 0.5s) linear both scroll-up;
+}
+
+::view-transition-new(.scroll-down) {
+  animation: var(--vtd, 0.5s) linear both reverse scroll-down;
+}
+
+@keyframes scroll-up {
+	0% {
+    transform: translateY(0);
+	}
+	100% {
+    transform: translateY(100vh);
+	}
+}
+
+@keyframes scroll-down {
+	0% {
+    transform: translateY(0);
+	}
+	100% {
+    transform: translateY(-100vh);
+	}
+}
+::view-transition-group(.duration-9) {
+  animation-duration: 0.9s;
+}
+::view-transition-group(.delay-3) {
+  animation-delay: 0.3s;
+}

@@ -11,7 +11,7 @@ export default function Home() {
     <main className="contents">
       <ScrollUp />
       <ContentSlide title="slide title 1" img={img1.src} className="me-auto!">
-        <div className="prose w-full bg-pink-50/70 p-8">
+        <div className="prose prose-sm mx-auto my-35 w-full bg-pink-50/70 p-4 md:p-8">
           <h1 className="font-serif capitalize">About Us</h1>
           <p>
             CryptoLand is your gateway to a future where services, assets, and
@@ -28,7 +28,7 @@ export default function Home() {
         </div>
       </ContentSlide>
       <ContentSlide title="slide title 3" img={img4.src} className="mx-auto!">
-        <div className="prose m-8 bg-pink-50/70 p-8 md:mx-16 lg:mx-32">
+        <div className="prose prose-sm my-35 bg-pink-50/70 p-4">
           <h1 className="font-serif capitalize">Our Ecosystem Includes</h1>
           <p>
             🎮 Sports & Gaming: Compete, play, and earn in blockchain-integrated
@@ -59,7 +59,7 @@ export default function Home() {
         img={img3.src}
         className="mx-auto mt-auto"
       >
-        <div className="prose m-8 bg-pink-50/70 p-8 md:mx-16 lg:mx-32">
+        <div className="prose prose-sm mx-auto my-35 bg-pink-50/70 p-4 md:p-8">
           <h1 className="font-serif capitalize">Why CryptoLand?</h1>
           <p>
             At CryptoLand, the future isn’t a concept—it’s a platform you can

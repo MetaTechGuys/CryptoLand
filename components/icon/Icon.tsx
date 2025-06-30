@@ -2,7 +2,7 @@ import clsx from 'clsx'
 import React, { forwardRef, ReactNode } from 'react'
 import IcoMoon from 'react-icomoon'
 import { twMerge } from 'tailwind-merge'
-import type { IconNames } from './icon'
+import type { IconNames } from './icon.d'
 import iconSet from './selection.json'
 
 export type IconProps = React.HTMLAttributes<SVGElement> & {

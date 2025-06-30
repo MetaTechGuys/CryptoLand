@@ -1,39 +1,56 @@
 'use client'
+import { useHash } from '@/utils/route'
 import { AnimatePresence } from 'motion/react'
+import { usePathname } from 'next/navigation'
+import { lazy, PropsWithChildren, useEffect, useState } from 'react'
 import SlidesControls from './Controls'
 import LastSlide from './LastSlide'
-import { lazy, PropsWithChildren } from 'react'
-import { useHash } from '@/utils/route'
 
 const ContentSlideVert = lazy(() => import('../../components/ContentSlideVert'))
 
 export default function Home({ children }: Readonly<PropsWithChildren>) {
+  const [show, setShow] = useState(false)
   const hash = useHash()
+  const pathn = usePathname()
+  const haveHash = hash.length > 1
+  const havePath = pathn.length > 1
+  const skipAnimates = haveHash || havePath
+
+  useEffect(() => {
+    setTimeout(
+      () => {
+        setShow(true)
+      },
+      skipAnimates ? 0 : 4000
+    )
+  }, [])
   return (
     <main className="contents">
-      <SlidesControls />
-      <AnimatePresence mode="sync">{children}</AnimatePresence>
+      <SlidesControls skipAnimates={skipAnimates} />
+      <AnimatePresence mode="sync">
+        {show ? children : <div className="h-screen" />}
+      </AnimatePresence>
       <LastSlide />
-      {hash === '#club' ? (
+      {hash === '#sports' ? (
         <ContentSlideVert
-          key="club"
-          title="Club"
+          key="sports"
+          title="sports"
           className="fixed inset-0"
           img="/Oystra-Residences-1.jpg"
         />
       ) : null}
-      {hash === '#hotel' ? (
+      {hash === '#health' ? (
         <ContentSlideVert
-          key="hotel"
-          title="hotel"
+          key="health"
+          title="health"
           className="fixed inset-0"
           img="/dkjnb.jpg"
         />
       ) : null}
-      {hash === '#features' ? (
+      {hash === '#business' ? (
         <ContentSlideVert
-          key="features"
-          title="Features"
+          key="business"
+          title="business"
           className="fixed inset-0"
           img="/Oystra_Al_Marjan_Island_by_Zaha_Hadid_2.webp"
         />
