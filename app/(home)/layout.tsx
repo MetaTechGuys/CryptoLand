@@ -2,11 +2,12 @@
 import { useHash } from '@/utils/route'
 import { AnimatePresence } from 'motion/react'
 import { usePathname } from 'next/navigation'
-import { lazy, PropsWithChildren, useEffect, useState } from 'react'
+import { Fragment, lazy, PropsWithChildren, useEffect, useState } from 'react'
 import SlidesControls from './Controls'
 import LastSlide from './LastSlide'
+import blogsData from '@/data/blogs'
 
-const ContentSlideVert = lazy(() => import('../../components/ContentSlideVert'))
+const BlogSlide = lazy(() => import('../../components/BlogSlide'))
 
 export default function Home({ children }: Readonly<PropsWithChildren>) {
   const [show, setShow] = useState(false)
@@ -31,30 +32,13 @@ export default function Home({ children }: Readonly<PropsWithChildren>) {
         {show ? children : <div className="h-screen" />}
       </AnimatePresence>
       <LastSlide />
-      {hash === '#cryptoland' ? (
-        <ContentSlideVert
-          key="cryptoland"
-          title="cryptoland"
-          className="fixed inset-0"
-          img="/Oystra-Residences-1.jpg"
-        />
-      ) : null}
-      {hash === '#health' ? (
-        <ContentSlideVert
-          key="health"
-          title="health"
-          className="fixed inset-0"
-          img="/dkjnb.jpg"
-        />
-      ) : null}
-      {hash === '#business' ? (
-        <ContentSlideVert
-          key="business"
-          title="business"
-          className="fixed inset-0"
-          img="/Oystra_Al_Marjan_Island_by_Zaha_Hadid_2.webp"
-        />
-      ) : null}
+      {blogsData.map((bd) => (
+        <Fragment key={bd.key}>
+          {hash === '#' + bd.key ? (
+            <BlogSlide key={bd.key} blog={bd} className="fixed inset-0" />
+          ) : null}
+        </Fragment>
+      ))}
     </main>
   )
 }

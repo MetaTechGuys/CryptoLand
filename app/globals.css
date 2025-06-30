@@ -108,3 +108,7 @@ html {
 @utility glass {
   @apply backdrop-filter backdrop-blur-sm
 }
+
+@utility prose-mdx {
+  @apply prose prose-sm prose-h1:font-serif prose-h1:font-bold;
+}

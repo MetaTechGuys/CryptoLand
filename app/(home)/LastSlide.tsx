@@ -1,4 +1,5 @@
 'use client'
+import blogsData from '@/data/blogs'
 import { AnimatePresence, motion, useInView } from 'motion/react'
 import { useRef } from 'react'
 
@@ -13,7 +14,7 @@ export default function LastSlide() {
         {inView ? (
           <>
             <motion.div
-              className="fixed inset-0 flex flex-col items-center justify-center gap-16 overflow-hidden bg-black/80 md:flex-row"
+              className="--md:flex-row fixed inset-0 flex flex-col items-center justify-center gap-16 overflow-hidden bg-black/80"
               initial={{ y: '100vh' }}
               animate={{ y: 0, transition: { duration: 0.7 } }}
               exit={{
@@ -42,15 +43,11 @@ export default function LastSlide() {
                   transition={{ duration: 2 }}
                 />
               </AnimatePresence>
-              <a href="#cryptoland" className="contents">
-                <MenuItem title="Cryptoland" delay={0.2} />
-              </a>
-              <a href="#health" className="contents">
-                <MenuItem title="Health" delay={0.3} />
-              </a>
-              <a href="#business" className="contents">
-                <MenuItem title="Business" delay={0.1} />
-              </a>
+              {blogsData.map((bd) => (
+                <a key={bd.key} href={`#${bd.key}`} className="contents">
+                  <MenuItem title={bd.key} delay={0.2} />
+                </a>
+              ))}
             </motion.div>
           </>
         ) : null}
@@ -70,7 +67,7 @@ function MenuItem({ title, delay = 0 }: MenuItemProps) {
     <motion.div
       whileHover={{ y: -8 }}
       whileTap={{ scale: 1.1 }}
-      className="relative grid w-50 grid-cols-1 grid-rows-1 text-center font-serif text-3xl font-bold uppercase"
+      className="relative grid w-full grid-cols-1 grid-rows-1 text-center font-serif text-3xl font-bold uppercase"
     >
       <motion.div
         initial={{ y: -200, opacity: 0 }}
