@@ -21,7 +21,7 @@ export default function BlogSlide({
   return (
     <motion.div
       className={cn(
-        'fixed inset-0 z-40 flex items-center justify-center bg-cover bg-center bg-no-repeat',
+        'fixed inset-0 z-10 flex items-center justify-center bg-cover bg-center bg-no-repeat',
         className
       )}
       style={bgImgStyle}

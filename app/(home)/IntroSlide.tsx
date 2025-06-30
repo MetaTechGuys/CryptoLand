@@ -30,9 +30,17 @@ export default function IntroSlide() {
             transition={{ delay: 0.5 }}
             className="cus-hv-center text-shadow absolute inset-0 size-full"
           >
-            <div className="bg-sickpattern bg-clip-text p-8 text-transparent drop-shadow drop-shadow-white select-none">
-              <h1 className="mb-2 w-sm font-serif text-6xl leading-20 font-bold">
-                Where Cryptocurrency Meets Luxury Living
+            <div className="bg-sickpattern bg-clip-text p-8 text-transparent select-none">
+              <h1 className="mb-2 font-serif text-6xl leading-20 font-bold">
+                Where
+                <br />
+                Cryptocurrency
+                <br />
+                Meets
+                <br />
+                Luxury
+                <br />
+                Living
               </h1>
             </div>
           </motion.div>

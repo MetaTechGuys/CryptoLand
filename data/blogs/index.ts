@@ -12,10 +12,11 @@ import img3 from '@/public/zaha-hadid-architects-unveils-design-of-oystra-mixed-
 import Book from './Book.mdx'
 import img4 from '@/public/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates_6.jpg'
 
-import Living from './Living.mdx'
+import Living, { title } from './Living.mdx'
 import img5 from '@/public/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates_1.jpg'
 
 import { createElement, ReactNode } from 'react'
+console.log({ Living })
 
 export interface IBlogPost {
   key: string

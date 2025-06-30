@@ -89,7 +89,8 @@ html {
 
 @utility bg-sickpattern {
   background-image: linear-gradient(-45deg, #ee775277, #e73c7e77, #23a6d577, #23d5ab77), url(/bg-pattern.png);
-  height: unset
+  height: unset;
+  filter: drop-shadow(2px 2px 1px white)
 }
 
 
@@ -110,5 +111,5 @@ html {
 }
 
 @utility prose-mdx {
-  @apply prose prose-sm prose-h1:font-serif prose-h1:font-bold;
+  @apply prose prose-sm prose-headings:font-serif prose-headings:font-bold;
 }
