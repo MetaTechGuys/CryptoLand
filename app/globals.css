@@ -75,13 +75,23 @@ html {
     0 0 151px oklch(54.3% 0.209 352);
 }
 
- @utility cus-random-grad {
+@utility cus-random-grad {
   background-color: white;
   background-image: linear-gradient(-45deg, #ee775277, #e73c7e77, #23a6d577, #23d5ab77);
 	background-size: 400% 400%;
-	animation: gradient 15s ease infinite;
+	animation: gradient 60s ease infinite;
 	height: 100vh;
 }
+
+@utility bg-pattern {
+  background: url(/bg-pattern.png);
+}
+
+@utility bg-sickpattern {
+  background-image: linear-gradient(-45deg, #ee775277, #e73c7e77, #23a6d577, #23d5ab77), url(/bg-pattern.png);
+  height: unset
+}
+
 
 @keyframes gradient {
 	0% {

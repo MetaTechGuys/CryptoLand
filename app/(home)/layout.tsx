@@ -23,7 +23,7 @@ export default function Home({ children }: Readonly<PropsWithChildren>) {
       },
       skipAnimates ? 0 : 4000
     )
-  }, [])
+  }, [skipAnimates])
   return (
     <main className="contents">
       <SlidesControls skipAnimates={skipAnimates} />
@@ -31,10 +31,10 @@ export default function Home({ children }: Readonly<PropsWithChildren>) {
         {show ? children : <div className="h-screen" />}
       </AnimatePresence>
       <LastSlide />
-      {hash === '#sports' ? (
+      {hash === '#cryptoland' ? (
         <ContentSlideVert
-          key="sports"
-          title="sports"
+          key="cryptoland"
+          title="cryptoland"
           className="fixed inset-0"
           img="/Oystra-Residences-1.jpg"
         />

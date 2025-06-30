@@ -42,8 +42,8 @@ export default function LastSlide() {
                   transition={{ duration: 2 }}
                 />
               </AnimatePresence>
-              <a href="#sports" className="contents">
-                <MenuItem title="Sports" delay={0.2} />
+              <a href="#cryptoland" className="contents">
+                <MenuItem title="Cryptoland" delay={0.2} />
               </a>
               <a href="#health" className="contents">
                 <MenuItem title="Health" delay={0.3} />
