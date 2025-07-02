@@ -4,7 +4,6 @@ import ScrollUp from '@/components/ScrollUp'
 import { IFeature } from '@/data/feature'
 import { unstable_ViewTransition as ViewTransition } from 'react'
 import { motion } from 'motion/react'
-import Link from 'next/link'
 import { FloatingFeatureImage } from '@/components/FeatureCard'
 
 interface FeatureClientProps {
@@ -15,14 +14,9 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
   return (
     <main className="contents">
       <ScrollUp />
-      <SlideHero
-        darken
-        key="features"
-        img="/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates_3.jpg"
-      >
+      <SlideHero darken key="features" img="/backgrounds/background-5.png">
         <ViewTransition name={`feature-${feature.key}-root`}>
           <div className="p-2 pt-35! md:p-8">
-            <Link href="/features">Back</Link>
             <ViewTransition
               name={`feature-${feature.key}-root`}
               default="delay-3"

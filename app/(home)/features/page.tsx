@@ -19,11 +19,7 @@ export default function FeaturesPage() {
 function FeaturesList() {
   const [focus, setFocus] = useState('')
   return (
-    <SlideHero
-      darken
-      key="features"
-      img="/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates_3.jpg"
-    >
+    <SlideHero darken key="features" img="/backgrounds/background-6.png">
       <div className="grid size-full gap-2 overflow-auto p-2 pt-35! perspective-midrange md:grid-cols-2 md:gap-4 md:p-8 lg:grid-cols-3 xl:grid-cols-4">
         {featuresData.map((fd) => (
           <Link

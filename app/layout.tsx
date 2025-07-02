@@ -7,8 +7,8 @@ import './animations.css'
 
 const sans = Inter({
   variable: '--google-sans',
-  weight: ['400', '700'],
   subsets: ['latin'],
+  weight: 'variable',
   fallback: ['Arial', 'Thoma', 'sans-serif'],
 })
 

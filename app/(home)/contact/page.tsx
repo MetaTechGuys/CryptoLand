@@ -1,7 +1,9 @@
 'use client'
+import { BackEdge } from '@/components/BackEdge'
 import { SlideHero } from '@/components/BaseSlide'
 import ScrollUp from '@/components/ScrollUp'
 import Icon from '@/components/icon/Icon'
+import Link from 'next/link'
 
 export default function Home() {
   return (
@@ -15,10 +17,13 @@ export default function Home() {
 function AboutSlide() {
   return (
     <div className="h-screen snap-center">
+      <Link href="/" className="contents">
+        <BackEdge name="home" />
+      </Link>
       <SlideHero
         key="features"
         className="fixed inset-0"
-        img="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=1600&height=900&center=lonlat:55.661969,25.699093&zoom=11.9505&scaleFactor=2&apiKey=39227ea9cee94e51b3e0681446dd2116"
+        img="https://maps.geoapify.com/v1/staticmap?style=osm-carto&width=1600&height=900&center=lonlat:55.661969,25.699093&zoom=11.9505&scaleFactor=1&apiKey=39227ea9cee94e51b3e0681446dd2116"
       >
         <div className="my-35 mr-auto w-full overflow-clip rounded">
           <div className="prose prose-sm w-full bg-pink-50/70 p-4 pb-16! md:p-8">

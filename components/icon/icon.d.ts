@@ -21,3 +21,4 @@ export type IconNames =
   | 'arrow-back'
   | 'home'
   | 'instagram'
+  | 'chevrons-right'

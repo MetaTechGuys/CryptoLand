@@ -228,3 +228,8 @@ body.env-prod * {
   background-clip: text;
   animation: shine 5s linear infinite;
 }
+
+@utility text-up-down {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}

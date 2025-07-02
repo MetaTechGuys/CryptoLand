@@ -1,14 +1,19 @@
 'use client'
+import { BackEdge } from '@/components/BackEdge'
 import ContentSlide from '@/components/ContentSlide'
 import ScrollUp from '@/components/ScrollUp'
-import img1 from '@/public/Oystra-Residences-1.jpg'
-import img3 from '@/public/Oystra_Al_Marjan_Island_by_Zaha_Hadid.webp'
-import img4 from '@/public/Oystra_Al_Marjan_Island_by_Zaha_Hadid_2.webp'
+import img1 from '@/public/backgrounds/background-3.png'
+import img3 from '@/public/backgrounds/background-4.png'
+import img4 from '@/public/backgrounds/background-7.png'
+import Link from 'next/link'
 // import ScrollSpy from './ScrollSpy'
 
 export default function Home() {
   return (
     <main className="contents">
+      <Link href="/" className="contents">
+        <BackEdge name="home" />
+      </Link>
       <ScrollUp />
       <ContentSlide title="slide title 1" img={img1.src} className="me-auto!">
         <div className="prose prose-sm mx-auto my-35 w-full bg-pink-50/70 p-4 md:p-8">
