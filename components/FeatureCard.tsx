@@ -10,6 +10,7 @@ import {
 } from 'motion/react'
 import Image, { StaticImageData } from 'next/image'
 import { useState, unstable_ViewTransition as ViewTransition } from 'react'
+import GlareHover from './bits/GlareHover'
 
 interface FeatureCardProps {
   className?: string
@@ -21,16 +22,15 @@ export function FeatureCard({ className, feature }: FeatureCardProps) {
   const f = motionValue(1)
   return (
     <ViewTransition name={`feature-${feature.key}-root`} default="delay-3">
-      <div
+      <GlareHover
+        playOnce
         className={cn(
-          'glass @container overflow-clip rounded-2xl bg-stone-50/60',
+          'glass @container overflow-clip rounded-2xl bg-slate-50/60',
           'perspective-midrange',
-          'cursor-pointer transition-all duration-100 hover:outline-2 hover:outline-offset-2',
+          'cursor-pointer transition-all duration-100',
           className,
           feature.className
         )}
-        onMouseOverCapture={() => f.set(2)}
-        onMouseOutCapture={() => f.set(1)}
       >
         <FloatingFeatureImage
           src={feature.image}
@@ -49,7 +49,7 @@ export function FeatureCard({ className, feature }: FeatureCardProps) {
             </p>
           </div>
         </div>
-      </div>
+      </GlareHover>
     </ViewTransition>
   )
 }

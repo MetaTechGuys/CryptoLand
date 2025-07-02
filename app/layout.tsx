@@ -38,7 +38,8 @@ export default function RootLayout({
         className={cn(
           sans.variable,
           serif.variable,
-          'min-h-screen w-screen overflow-x-hidden antialiased'
+          'min-h-screen w-screen overflow-x-hidden antialiased',
+          { 'env-prod': process.env.NODE_ENV === 'production' }
         )}
       >
         {children}

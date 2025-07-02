@@ -1,0 +1,15 @@
+.cube-glow {
+  width: 150px; height: 150px;
+  margin: 50px auto;
+  transform-style: preserve-3d;
+  animation: spin 5s linear infinite;
+  box-shadow:
+    0 0 20px rgba(255,0,255,0.6),
+    inset 0 0 10px rgba(0,255,255,0.6);
+  background: linear-gradient(45deg, #ff0080, #00ffff);
+}
+
+@keyframes spin {
+  from { transform: rotateX(0deg) rotateY(0deg); }
+  to   { transform: rotateX(360deg) rotateY(360deg); }
+}

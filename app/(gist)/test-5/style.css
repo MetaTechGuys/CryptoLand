@@ -1,0 +1,27 @@
+
+/*
+variables:
+a     = 5em
+2.5em = a / 2
+*/
+html, body {height:100%;}
+html       {display:table; width:100%;}
+body       {display:table-cell; text-align:center; vertical-align:middle;background-color: unset!important;}
+
+.cubexxx                  {display:inline-block!important;}
+.cubexxx > *              {box-shadow:0 0 1px black inset; background-color:rgba(255,255,255,.5);}
+.cubexxx > [class]:before {content:"." attr(class); position:absolute; line-height:0; top:50%; display:block;width:100%;margin:0 auto;}
+    
+.cubexxx,
+.cubexxx > *       {display:block; width:5em; height:5em;}
+
+.cubexxx           {perspective:15em; transform-style:preserve-3d; /*perspective-origin:50% 50%;*/}
+
+.cubexxx > *       {position:absolute;}
+
+.cubexxx > .front  {transform:                translateZ( 2.5em);}
+.cubexxx > .back   {transform:                translateZ(-2.5em);}
+.cubexxx > .right  {transform:rotateY( 90deg) translateZ( 2.5em);}
+.cubexxx > .left   {transform:rotateY(-90deg) translateZ( 2.5em);}
+.cubexxx > .top    {transform:rotateX( 90deg) translateZ( 2.5em);}
+.cubexxx > .bottom {transform:rotateX(-90deg) translateZ( 2.5em);}

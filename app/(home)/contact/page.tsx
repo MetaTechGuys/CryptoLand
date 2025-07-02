@@ -40,7 +40,7 @@ function AboutSlide() {
                   name="email"
                   placeholder="name@example.com"
                   required
-                  className="w-full rounded border border-stone-400 bg-black/10 px-4 py-2"
+                  className="w-full rounded border border-slate-400 bg-black/10 px-4 py-2"
                 />
               </label>
               <label htmlFor="name" className="col-span-2">
@@ -49,7 +49,7 @@ function AboutSlide() {
                   id="name"
                   name="name"
                   placeholder="John Dow"
-                  className="w-full rounded border border-stone-400 bg-black/10 px-4 py-2"
+                  className="w-full rounded border border-slate-400 bg-black/10 px-4 py-2"
                 />
               </label>
               <label htmlFor="message" className="col-span-4">
@@ -58,34 +58,34 @@ function AboutSlide() {
                   id="message"
                   name="message"
                   required
-                  className="w-full rounded border border-stone-400 bg-black/10 px-4 py-2"
+                  className="w-full rounded border border-slate-400 bg-black/10 px-4 py-2"
                 ></textarea>
               </label>
               <div className="cus-hv-center col-span-4 col-start-1">
-                <button className="group -w-full relative overflow-clip rounded border border-stone-900 bg-stone-800 px-16 py-2 font-bold text-white hover:bg-stone-700">
+                <button className="group -w-full relative overflow-clip rounded border border-slate-900 bg-slate-800 px-16 py-2 font-bold text-white hover:bg-slate-700">
                   <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-indigo-400/30 to-transparent transition-transform duration-1000 ease-out group-hover:translate-x-full" />
                   Send
                 </button>
               </div>
             </form>
           </div>
-          <div className="grid max-w-full grid-cols-3 bg-stone-400/90 p-4 text-center text-sm text-wrap text-black md:p-8">
+          <div className="grid max-w-full grid-cols-3 bg-slate-400/90 p-4 text-center text-sm text-wrap text-black md:p-8">
             <div className="-mt-14 flex flex-col items-center">
-              <div className="cus-hv-center mb-2 size-12 rounded-full bg-stone-900 text-white">
+              <div className="cus-hv-center mb-2 size-12 rounded-full bg-slate-900 text-white">
                 <Icon name="phone" className="size-6" />
               </div>
               <div className="font-bold uppercase opacity-50">Phone</div>
               <p className="text-xs">+44 20 76 92 56 76</p>
             </div>
             <div className="-mt-14 flex flex-col items-center">
-              <div className="cus-hv-center mb-2 size-12 rounded-full bg-stone-900 text-white">
+              <div className="cus-hv-center mb-2 size-12 rounded-full bg-slate-900 text-white">
                 <Icon name="email" className="size-6" />
               </div>
               <div className="font-bold uppercase opacity-50">Email</div>
               <p className="text-xs">Info@RichMindholding.com</p>
             </div>
             <div className="-mt-14 flex flex-col items-center">
-              <div className="cus-hv-center mb-2 size-12 rounded-full bg-stone-900 text-white">
+              <div className="cus-hv-center mb-2 size-12 rounded-full bg-slate-900 text-white">
                 <Icon name="map-pin" className="size-6" />
               </div>
               <div className="font-bold uppercase opacity-50">Address</div>

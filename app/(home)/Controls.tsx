@@ -85,7 +85,7 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
   return (
     <>
       <motion.div
-        className="fixed inset-0 bottom-auto z-40 ms-8 flex max-w-min min-w-50 origin-left scale-100! flex-col items-center gap-4 py-4 sm:max-w-full sm:origin-center sm:justify-center sm:ps-0"
+        className="fixed inset-0 bottom-auto z-40 ms-8 flex max-w-min min-w-50 origin-left scale-100! flex-col items-center gap-4 py-4 mix-blend-hard-light sm:max-w-full sm:origin-center sm:justify-center sm:ps-0"
         style={{ y, scale }}
       >
         <Link className="contents" href="/">
@@ -96,10 +96,20 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
               className="h-8 w-min brightness-[100]"
             />
           </motion.div>
-          <motion.h1 className="--neonText font-serif text-xl font-bold tracking-widest text-nowrap uppercase text-shadow-xs sm:text-2xl md:text-3xl">
-            {title.substring(0, typewrite) +
-              (typewrite > 0 && typewrite < title.length ? '_' : '')}
-          </motion.h1>
+          <div className="cus-hv-center">
+            <motion.h1 className="animate-shine font-serif text-xl font-bold tracking-widest text-nowrap uppercase text-shadow-xs sm:text-2xl md:text-3xl">
+              {title.substring(0, typewrite) +
+                (typewrite > 0 && typewrite < title.length ? '_' : '')}
+            </motion.h1>
+            <motion.span
+              className="ps-3 text-xs tracking-[18px] uppercase opacity-50"
+              initial={{ scaleY: 0 }}
+              animate={{ scaleY: 1 }}
+              transition={{ delay: 2.3 }}
+            >
+              by oystra
+            </motion.span>
+          </div>
         </Link>
       </motion.div>
       <AnimatePresence>
@@ -263,7 +273,7 @@ interface MenuItemProps {
 
 function MenuItem({ title }: MenuItemProps) {
   return (
-    <div className="grid grid-cols-1 grid-rows-1 font-serif text-3xl font-bold uppercase sm:text-5xl md:text-7xl">
+    <div className="group grid grid-cols-1 grid-rows-1 font-serif text-3xl font-bold uppercase sm:text-5xl md:text-7xl">
       <motion.div
         initial={{ y: -200, opacity: 0 }}
         animate={{ y: 0, opacity: 1, transition: { delay: 0.5 } }}
@@ -274,8 +284,7 @@ function MenuItem({ title }: MenuItemProps) {
       <motion.div
         initial={{ y: -200, opacity: 0 }}
         animate={{ y: 4, x: 4, opacity: 0.2, transition: { delay: 0.55 } }}
-        whileHover={{ x: 8, y: 8, opacity: 0.3, transition: { delay: 0 } }}
-        className="col-start-1 row-start-1 text-pink-800"
+        className="col-start-1 row-start-1 text-pink-800 transition-transform duration-75 will-change-transform group-hover:translate-1"
       >
         {title}
       </motion.div>

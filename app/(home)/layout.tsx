@@ -1,16 +1,18 @@
 'use client'
 import { useHash } from '@/utils/route'
-import { AnimatePresence } from 'motion/react'
+import { AnimatePresence, useReducedMotion } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { Fragment, lazy, PropsWithChildren, useEffect, useState } from 'react'
 import SlidesControls from './Controls'
 import LastSlide from './LastSlide'
 import blogsData from '@/data/blogs'
+import Cursor from '@/components/bits/Cursor'
 
 const BlogSlide = lazy(() => import('../../components/BlogSlide'))
 
 export default function Home({ children }: Readonly<PropsWithChildren>) {
   const [show, setShow] = useState(false)
+  const reduced = useReducedMotion()
   const hash = useHash()
   const pathn = usePathname()
   const haveHash = hash.length > 1
@@ -26,7 +28,7 @@ export default function Home({ children }: Readonly<PropsWithChildren>) {
     )
   }, [skipAnimates])
   return (
-    <main className="contents">
+    <main className="111 contents">
       <SlidesControls skipAnimates={skipAnimates} />
       <AnimatePresence mode="sync">
         {show ? children : <div className="h-screen" />}
@@ -39,6 +41,7 @@ export default function Home({ children }: Readonly<PropsWithChildren>) {
           ) : null}
         </Fragment>
       ))}
+      {!reduced && process.env.NODE_ENV === 'production' ? <Cursor /> : null}
     </main>
   )
 }

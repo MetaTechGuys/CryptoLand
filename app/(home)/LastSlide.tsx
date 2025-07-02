@@ -1,52 +1,126 @@
 'use client'
 import blogsData from '@/data/blogs'
-import { AnimatePresence, motion, useInView } from 'motion/react'
-import { useRef } from 'react'
+import {
+  AnimatePresence,
+  motion,
+  TargetAndTransition,
+  useInView,
+} from 'motion/react'
+import Link from 'next/link'
+import { useEffect, useRef } from 'react'
+
+const videoAnimationVariants: Record<
+  'initial' | 'enter' | 'exit',
+  TargetAndTransition
+> = {
+  initial: {
+    opacity: 0,
+    x: '100%',
+  },
+  enter: {
+    opacity: 0.75,
+    x: '20%',
+    transition: { delay: 0.15, duration: 0.7 },
+  },
+  exit: {
+    opacity: 0,
+    x: '-10%',
+    transition: { duration: 0.3 },
+  },
+}
 
 export default function LastSlide() {
   const ref = useRef<HTMLElement>(null)
+  const vidRef = useRef<HTMLVideoElement>(null)
   const inView = useInView(ref, { amount: 0.1 })
-  // const inCenter = useInView(ref, { amount: 'all' })
-  //
+  useEffect(() => {
+    if (inView && vidRef.current) vidRef.current.currentTime = 0
+  }, [inView])
   return (
     <section ref={ref} className="h-screen snap-end">
       <AnimatePresence propagate>
         {inView ? (
           <>
             <motion.div
-              className="--md:flex-row fixed inset-0 flex flex-col items-center justify-center gap-16 overflow-hidden bg-black/80"
-              initial={{ y: '100vh' }}
-              animate={{ y: 0, transition: { duration: 0.7 } }}
+              className="fixed inset-0 flex flex-col items-center justify-center gap-16 overflow-hidden md:items-start"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, transition: { duration: 0.6 } }}
               exit={{
-                y: '100vh',
-                transition: { duration: 2, delay: 0.2 },
+                opacity: 0,
+                transition: { duration: 1, delay: 0.2 },
               }}
             >
               <AnimatePresence propagate>
-                <motion.div
+                {/* <motion.div
                   key="bg"
-                  className="absolute inset-0 flex items-center justify-center bg-pink-900/60 bg-[url(/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates_3.jpg)] bg-cover bg-[80%] bg-no-repeat bg-blend-color md:bg-[url(/zaha-hadid-architects-unveils-design-of-oystra-mixed-use-development-in-the-united-arab-emirates.jpg)] md:bg-center"
-                  initial={{ opacity: 0 }}
+                  className="absolute inset-0 flex items-center justify-center bg-black bg-[url(/wd-black.jpg)] bg-center bg-no-repeat"
+                  initial={{
+                    opacity: 0,
+                    backgroundPositionX: 'calc(50% - 300px)',
+                  }}
                   animate={{
                     opacity: 1,
-                    scale: 1.1,
-                    transition: { delay: 0.45, duration: 1.5 },
+                    backgroundPositionX: 'calc(50% + 0px)',
+                    transition: { delay: 0.15, duration: 0.5 },
                   }}
-                />
-                <div className="absolute inset-0 bg-[url(/bg-pattern.png)]" />
-                <motion.div
-                  key="cover"
-                  className="absolute inset-0 bg-black"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 0 }}
-                  exit={{ opacity: 1 }}
-                  transition={{ duration: 2 }}
-                />
+                  exit={{
+                    opacity: 0,
+                    backgroundPositionX: 'calc(50% - 300px)',
+                    transition: { duration: 0.5 },
+                  }}
+                /> */}
+                <div
+                  key="vid-wrapper"
+                  className="absolute inset-0 flex items-center justify-end bg-black"
+                >
+                  <motion.video
+                    ref={vidRef}
+                    variants={videoAnimationVariants}
+                    key="vid"
+                    src="/wd-motion.webm"
+                    className="h-2/3 bg-black object-cover object-left"
+                    muted
+                    initial="initial"
+                    animate="enter"
+                    exit="exit"
+                    onAnimationStart={(def) => {
+                      if (vidRef.current) {
+                        if (def === 'enter') {
+                          vidRef.current.currentTime = 0
+                          setTimeout(
+                            () => {
+                              vidRef.current!.play()
+                            },
+                            (videoAnimationVariants.enter.transition?.delay ??
+                              0) * 1000
+                          )
+                        } else {
+                          vidRef.current.currentTime = 0.3
+                          vidRef.current.play()
+                        }
+                        console.log(def)
+                      }
+                      if (vidRef.current && def === 'enter') {
+                      }
+                    }}
+                    onAnimationComplete={() => {
+                      if (vidRef.current) {
+                        vidRef.current.pause()
+                      }
+                    }}
+                    onAnimationIteration={console.log.bind(console, '[ittt]')}
+                  />
+                </div>
+                <div key="pattern" className="bg-pattern absolute inset-0" />
               </AnimatePresence>
-              {blogsData.map((bd) => (
-                <a key={bd.key} href={`#${bd.key}`} className="contents">
-                  <MenuItem title={bd.key} delay={0.2} />
-                </a>
+              {blogsData.map((bd, i) => (
+                <Link
+                  key={bd.key}
+                  href={`/blog/${bd.key}`}
+                  className="contents"
+                >
+                  <MenuItem title={bd.key} indexFactor={i / blogsData.length} />
+                </Link>
               ))}
             </motion.div>
           </>
@@ -59,34 +133,44 @@ export default function LastSlide() {
 interface MenuItemProps {
   title: string
   link?: string
-  delay?: number
+  indexFactor?: number
 }
 
-function MenuItem({ title, delay = 0 }: MenuItemProps) {
+function MenuItem({ title, indexFactor = 0 }: MenuItemProps) {
   return (
     <motion.div
       whileHover={{ y: -8 }}
       whileTap={{ scale: 1.1 }}
-      className="relative grid w-full grid-cols-1 grid-rows-1 text-center font-serif text-3xl font-bold uppercase"
+      className="relative grid grid-cols-1 grid-rows-1 text-center font-serif text-3xl font-bold uppercase sm:w-1/2 md:px-20 md:text-start lg:px-40 xl:px-40"
     >
       <motion.div
-        initial={{ y: -200, opacity: 0 }}
+        initial={{ x: -200, opacity: 0 }}
         animate={{
-          y: 0,
+          x: 0,
           opacity: 1,
-          transition: { delay: 1.0 + delay },
+          transition: { delay: 0.7 + indexFactor * 0.5 },
+        }}
+        exit={{
+          x: -200,
+          opacity: 0,
+          transition: { delay: (1 - indexFactor) * 0.5 },
         }}
         className="pointer-events-none z-10 col-start-1 row-start-1"
       >
         {title}
       </motion.div>
       <motion.div
-        initial={{ y: -200, opacity: 0 }}
+        initial={{ x: -200, opacity: 0 }}
         animate={{
           y: 4,
           x: 4,
           opacity: 0.2,
-          transition: { delay: 1.05 + delay },
+          transition: { delay: 0.75 + indexFactor * 0.5 },
+        }}
+        exit={{
+          x: -200,
+          opacity: 0,
+          transition: { delay: (1 - indexFactor) * 0.5 },
         }}
         className="col-start-1 row-start-1 text-white"
       >

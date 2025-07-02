@@ -1,6 +1,7 @@
 // import Image from 'next/image'
 // import img from '@/public/OYSTRA-ZAHA-HADID-2.webp'
 import './style.css'
+import Cursor from '@/components/bits/Cursor'
 
 export default function TestPage() {
   return (
@@ -22,6 +23,7 @@ export default function TestPage() {
           </p>
         </div>
       </div>
+      <Cursor />
     </div>
   )
 }

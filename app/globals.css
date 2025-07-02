@@ -2,31 +2,16 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  /* --background: #ffffff;
-  --foreground: #171717; */
+  --yellow: #feca19;
+  --pink: #fd51b3;
+  --turquoise: #0dd7fb;
+  --gulfblue: #031552;
+
+  --color-black: #000;
+  --color-white: #fff;
+
   --background: #0a0a0a;
   --foreground: #ededed;
-}
-
-@theme inline {
-  --color-pink-50: oklch(95.09% 0.026 353.61);
-  --color-pink-100: oklch(91.13% 0.049 352.14);
-  --color-pink-200: oklch(82.41% 0.105 352.45);
-  --color-pink-300: oklch(73.09% 0.178 352.32);
-  --color-pink-400: oklch(64.52% 0.249 352.09);
-  --color-pink-500: oklch(54.3% 0.209 352);
-  --color-pink-600: oklch(46.35% 0.179 352.14);
-  --color-pink-700: oklch(38.15% 0.147 351.82);
-  --color-pink-800: oklch(30.8% 0.119 351.94);
-  --color-pink-900: oklch(22.78% 0.087 352.79);
-  --color-pink-950: oklch(17.34% 0.068 352.3);
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--google-sans);
-  --font-serif: var(--google-serif);
-}
-@utility cus-hv-center {
-  @apply flex flex-col justify-center items-center
 }
 
 @media (prefers-color-scheme: dark) {
@@ -34,6 +19,98 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+}
+
+@theme inline {
+  --color-*: initial;
+
+  --color-pink: oklch(69.949% 0.22627 349.46);
+  --color-pink-50: oklch(100% 0 none);
+  --color-pink-100: oklch(97.329% 0.01665 343.61);
+  --color-pink-200: oklch(89.314% 0.07009 343.08);
+  --color-pink-300: oklch(81.913% 0.1256 345.29);
+  --color-pink-400: oklch(75.165% 0.18078 346.7);
+  --color-pink-500: oklch(69.949% 0.22627 349.46);
+  --color-pink-600: oklch(65.431% 0.26022 354.05);
+  --color-pink-700: oklch(58.135% 0.23671 356.45);
+  --color-pink-800: oklch(46.923% 0.19108 355.98);
+  --color-pink-900: oklch(34.777% 0.14197 354.67);
+  --color-pink-950: oklch(28.545% 0.11612 354.04);
+
+  --color-yellow: oklch(86.073% 0.17212 89.314);
+  --color-yellow-50: oklch(96.667% 0.04821 93.002);
+  --color-yellow-100: oklch(95.233% 0.06889 92.995);
+  --color-yellow-200: oklch(92.739% 0.10614 93.245);
+  --color-yellow-300: oklch(90.326% 0.1384 93.449);
+  --color-yellow-400: oklch(88.009% 0.16044 91.651);
+  --color-yellow-500: oklch(86.073% 0.17212 89.314);
+  --color-yellow-600: oklch(76.881% 0.15704 87.506);
+  --color-yellow-700: oklch(62.142% 0.12678 88.305);
+  --color-yellow-800: oklch(46.232% 0.09448 88.858);
+  --color-yellow-900: oklch(29.032% 0.05939 92.018);
+  --color-yellow-950: oklch(19.299% 0.03964 95.189);
+
+  --color-turquoise: oklch(81.016% 0.14252 215.78);
+  --color-turquoise-50: oklch(93.784% 0.05323 209.5);
+  --color-turquoise-100: oklch(91.996% 0.06946 209.64);
+  --color-turquoise-200: oklch(88.443% 0.09841 210.18);
+  --color-turquoise-300: oklch(85.396% 0.12051 211.33);
+  --color-turquoise-400: oklch(83.104% 0.13569 213.06);
+  --color-turquoise-500: oklch(81.016% 0.14252 215.78);
+  --color-turquoise-600: oklch(69.222% 0.12298 216.61);
+  --color-turquoise-700: oklch(54.941% 0.09695 215.56);
+  --color-turquoise-800: oklch(39.712% 0.06935 214.81);
+  --color-turquoise-900: oklch(22.79% 0.03867 212.42);
+  --color-turquoise-950: oklch(13.165% 0.02238 200.48);
+
+  --color-gulfblue: oklch(23.469% 0.11314 264.34);
+  --color-gulfblue-50: oklch(73.807% 0.128 270.7);
+  --color-gulfblue-100: oklch(69.564% 0.15051 269.95);
+  --color-gulfblue-200: oklch(61.206% 0.1985 267.84);
+  --color-gulfblue-300: oklch(53.971% 0.24041 265.53);
+  --color-gulfblue-400: oklch(48.047% 0.2646 264.29);
+  --color-gulfblue-500: oklch(42.27% 0.22982 264.3);
+  --color-gulfblue-600: oklch(36.311% 0.1935 264.4);
+  --color-gulfblue-700: oklch(29.972% 0.15418 264.3);
+  --color-gulfblue-800: oklch(23.469% 0.11314 264.34);
+  --color-gulfblue-900: oklch(13.637% 0.04893 261.39);
+  --color-gulfblue-950: oklch(3.0377% 0.02105 264.05);
+
+  --color-razzmatazz: oklch(56.343% 0.21851 6.6585);
+  --color-razzmatazz-50: oklch(89.306% 0.05661 352.86);
+  --color-razzmatazz-100: oklch(85.343% 0.07898 353.29);
+  --color-razzmatazz-200: oklch(77.941% 0.12326 355.08);
+  --color-razzmatazz-300: oklch(71.232% 0.16907 357.34);
+  --color-razzmatazz-400: oklch(65.826% 0.20711 0.18887);
+  --color-razzmatazz-500: oklch(61.682% 0.23108 4.4166);
+  --color-razzmatazz-600: oklch(56.343% 0.21851 6.6585);
+  --color-razzmatazz-700: oklch(46.062% 0.17734 5.9447);
+  --color-razzmatazz-800: oklch(35.011% 0.13161 5.183);
+  --color-razzmatazz-900: oklch(23.213% 0.08322 2.4135);
+  --color-razzmatazz-950: oklch(16.651% 0.05523 359.17);
+  
+  --color-slate-50: oklch(0.984 0.003 247.858);
+  --color-slate-100: oklch(0.968 0.007 247.896);
+  --color-slate-200: oklch(0.929 0.013 255.508);
+  --color-slate-300: oklch(0.869 0.022 252.894);
+  --color-slate-400: oklch(0.704 0.04 256.788);
+  --color-slate-500: oklch(0.554 0.046 257.417);
+  --color-slate-600: oklch(0.446 0.043 257.281);
+  --color-slate-700: oklch(0.372 0.044 257.287);
+  --color-slate-800: oklch(0.279 0.041 260.031);
+  --color-slate-900: oklch(0.208 0.042 265.755);
+  --color-slate-950: oklch(0.129 0.042 264.695);
+
+  --color-black: #000;
+  --color-white: #fff;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--google-sans);
+  --font-serif: var(--google-serif);
+}
+@utility cus-hv-center {
+  @apply flex flex-col justify-center items-center
 }
 
 body {
@@ -76,11 +153,25 @@ html {
 }
 
 @utility cus-random-grad {
-  background-color: white;
-  background-image: linear-gradient(-45deg, #ee775277, #e73c7e77, #23a6d577, #23d5ab77);
-	background-size: 400% 400%;
-	animation: gradient 60s ease infinite;
+  background-color: var(--color-gulfblue);
+  color: var(--color-pink);
+
+  background-image: radial-gradient(circle at 80% 40%, var(--color-pink), transparent 20%),
+    radial-gradient(circle at 60% 60%, var(--color-pink), transparent 20%),
+    radial-gradient(circle at 40% 50%, var(--color-yellow), transparent 20%),
+    radial-gradient(circle at 20% 40%, var(--color-pink), transparent 20%),
+    radial-gradient(circle at 0% 80%, #13d8fd, transparent 20%),
+    linear-gradient(170deg,transparent 10%, #0dd7fb 20%, transparent 30%),
+    linear-gradient(-10deg,transparent 10%, #0dd7fb 20%, transparent 30%);
+
+	background-size: 200% 100%;
+  background-repeat:  repeat-y;
+	animation: gradient 5s linear infinite alternate both;
 	height: 100vh;
+
+  /* img {
+    opacity: 0;
+  } */
 }
 
 @utility bg-pattern {
@@ -90,7 +181,9 @@ html {
 @utility bg-sickpattern {
   background-image: linear-gradient(-45deg, #ee775277, #e73c7e77, #23a6d577, #23d5ab77), url(/bg-pattern.png);
   height: unset;
-  filter: drop-shadow(2px 2px 1px white)
+  filter: drop-shadow(1px 1px 0px white);
+	/* background-size: 200% 200%; */
+	/* animation: gradient 10s steps(1) backwards infinite; */
 }
 
 
@@ -98,11 +191,8 @@ html {
 	0% {
 		background-position: 0% 50%;
 	}
-	50% {
-		background-position: 100% 50%;
-	}
 	100% {
-		background-position: 0% 50%;
+    background-position: 100% 50%;
 	}
 }
 
@@ -112,4 +202,29 @@ html {
 
 @utility prose-mdx {
   @apply prose prose-sm prose-headings:font-serif prose-headings:font-bold;
+}
+
+body:has(.cursor-pointer:hover) #cursor-tail > span,
+body:has(a:hover) #cursor-tail > span,
+body:has(button:hover) #cursor-tail > span {
+  /* border: none; */
+  transform: scale(2.1);
+  /* backdrop-filter: grayscale() invert() brightness(80%); */
+}
+body.env-prod * {
+  cursor: none!important;
+}
+
+@utility animate-shine {
+  color: transparent; /* Adjust this color to change intensity/style */
+  background: linear-gradient(
+    120deg,
+    var(--color-white) 45%,
+    color-mix(in oklab, oklch(0.554 0.046 257.417) 40%, transparent) 50%,
+    var(--color-white) 55%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shine 5s linear infinite;
 }

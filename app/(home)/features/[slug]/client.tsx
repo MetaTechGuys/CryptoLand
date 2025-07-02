@@ -27,7 +27,7 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
               name={`feature-${feature.key}-root`}
               default="delay-3"
             >
-              <div className="glass flex w-fit flex-col items-center justify-center gap-8 overflow-clip rounded-2xl bg-stone-50/60 p-8">
+              <div className="glass flex w-fit flex-col items-center justify-center gap-8 overflow-clip rounded-2xl bg-slate-50/60 p-8">
                 <FloatingFeatureImage
                   src={feature.image}
                   fkey={feature.key}
