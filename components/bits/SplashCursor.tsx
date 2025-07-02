@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 'use client'
 import React, { useEffect, useRef } from 'react'
 
@@ -149,7 +150,7 @@ export default function SplashCursor({
 
       const halfFloatTexType = isWebGL2
         ? (gl as WebGL2RenderingContext).HALF_FLOAT
-        : (halfFloat && (halfFloat as any).HALF_FLOAT_OES) || 0
+        : (halfFloat && halfFloat.HALF_FLOAT_OES) || 0
 
       let formatRGBA: any
       let formatRG: any

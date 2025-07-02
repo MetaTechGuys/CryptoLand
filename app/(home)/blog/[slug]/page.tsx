@@ -1,5 +1,4 @@
 import { PagePropsWithParams } from '@/utils/next'
-import BlogPageClient from './client'
 import blogsData from '@/data/blogs'
 import { notFound } from 'next/navigation'
 import BlogSlide from '@/components/BlogSlide'
