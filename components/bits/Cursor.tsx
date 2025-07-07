@@ -1,6 +1,12 @@
 'use client'
 
-import { frame, motion, SpringOptions, useSpring } from 'motion/react'
+import {
+  frame,
+  motion,
+  SpringOptions,
+  useMotionValue,
+  useSpring,
+} from 'motion/react'
 import { RefObject, useEffect, useRef } from 'react'
 
 export default function Cursor() {
@@ -17,6 +23,23 @@ export default function Cursor() {
       <span className="pointer-events-none block size-5 rounded-full border-2 border-white/50 transition-all"></span>
     </motion.div>
   )
+}
+
+export function usePointerRef() {
+  const x = useMotionValue(-50)
+  const y = useMotionValue(-50)
+  useEffect(() => {
+    const handlePointerMove = ({ clientX, clientY }: MouseEvent) => {
+      x.set(clientX)
+      y.set(clientY)
+    }
+    window.addEventListener('pointermove', handlePointerMove, { capture: true })
+    return () =>
+      window.removeEventListener('pointermove', handlePointerMove, {
+        capture: true,
+      })
+  }, [x, y])
+  return { x, y }
 }
 
 const spring: SpringOptions = {

@@ -11,6 +11,8 @@ import {
 import Image, { StaticImageData } from 'next/image'
 import { useState, unstable_ViewTransition as ViewTransition } from 'react'
 import GlareHover from './bits/GlareHover'
+import RichCanvas from './fibers/RichCanvas'
+import GlbObject from './fibers/GlbObject'
 
 interface FeatureCardProps {
   className?: string
@@ -25,19 +27,31 @@ export function FeatureCard({ className, feature }: FeatureCardProps) {
       <GlareHover
         playOnce
         className={cn(
-          'glass @container overflow-clip rounded-2xl bg-slate-50/60',
+          'glass group @container overflow-clip rounded-2xl bg-slate-50/60 hover:bg-slate-50/80',
           'perspective-midrange',
           'cursor-pointer transition-all duration-100',
           className,
           feature.className
         )}
       >
-        <FloatingFeatureImage
-          src={feature.image}
-          factor={f}
-          fkey={feature.key}
-          className="absolute right-16 bottom-8 -z-10 opacity-15"
-        />
+        <ViewTransition
+          name={`feature-${feature.key}-image`}
+          default="duration-9 delay-3"
+        >
+          {feature.image ? (
+            <FloatingFeatureImage
+              src={feature.image}
+              factor={f}
+              className="absolute right-16 bottom-8 -z-10 opacity-15"
+            />
+          ) : feature.model ? (
+            <div className="absolute right-16 bottom-8 -z-10 size-60 scale-75 opacity-0 transition duration-500 ease-in-out group-hover:scale-100 group-hover:opacity-80">
+              <RichCanvas>
+                <GlbObject {...feature.model} />
+              </RichCanvas>
+            </div>
+          ) : null}
+        </ViewTransition>
         <div className="relative z-10 grid size-full auto-rows-min gap-4 p-8 @lg:grid-cols-2">
           {/* <FloatingRPTag /> */}
           <div className="prose prose-sm prose-slate max-w-full">
@@ -55,7 +69,6 @@ export function FeatureCard({ className, feature }: FeatureCardProps) {
 }
 
 interface FloatingFeatureImageProps {
-  fkey: string
   className?: string
   src: StaticImageData
   factor?: MotionValue<number>
@@ -65,7 +78,6 @@ export function FloatingFeatureImage({
   src,
   className,
   factor,
-  fkey,
 }: FloatingFeatureImageProps) {
   const [rand1] = useState(Math.random() * 999)
   const [rand2] = useState(Math.random() * 999)
@@ -91,26 +103,7 @@ export function FloatingFeatureImage({
       )}
       style={{ y, x, rotateZ, scale, rotateY }}
     >
-      <ViewTransition
-        name={`feature-${fkey}-image`}
-        default="duration-9 delay-3"
-      >
-        <Image src={src} alt="" className="size-full" />
-      </ViewTransition>
+      <Image src={src} alt="" className="size-full" />
     </motion.div>
   )
 }
-
-// function FloatingRPTag() {
-//   return (
-//     <div className="absolute bg-white p-4 text-black">
-//       <span className="@sm:hidden">xs</span>
-//       <span className="hidden @sm:@max-md:block">sm</span>
-//       <span className="hidden @md:@max-lg:block">md</span>
-//       <span className="hidden @lg:@max-xl:block">lg</span>
-//       <span className="hidden @xl:@max-2xl:block">xl</span>
-//       <span className="hidden @2xl:@max-3xl:block">2xl</span>
-//       <span className="hidden @3xl:block">3xl</span>
-//     </div>
-//   )
-// }

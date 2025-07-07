@@ -5,6 +5,8 @@ import { IFeature } from '@/data/feature'
 import { unstable_ViewTransition as ViewTransition } from 'react'
 import { motion } from 'motion/react'
 import { FloatingFeatureImage } from '@/components/FeatureCard'
+import RichCanvas from '@/components/fibers/RichCanvas'
+import GlbObject from '@/components/fibers/GlbObject'
 
 interface FeatureClientProps {
   feature: IFeature
@@ -22,11 +24,23 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
               default="delay-3"
             >
               <div className="glass flex w-fit flex-col items-center justify-center gap-8 overflow-clip rounded-2xl bg-slate-50/60 p-8">
-                <FloatingFeatureImage
-                  src={feature.image}
-                  fkey={feature.key}
-                  className="-z-10"
-                />
+                <ViewTransition
+                  name={`feature-${feature.key}-image`}
+                  default="duration-9 delay-3"
+                >
+                  {feature.image ? (
+                    <FloatingFeatureImage
+                      src={feature.image}
+                      className="-z-10"
+                    />
+                  ) : feature.model ? (
+                    <div className="-z-10">
+                      <RichCanvas>
+                        <GlbObject {...feature.model} autoRotate />
+                      </RichCanvas>
+                    </div>
+                  ) : null}
+                </ViewTransition>
                 <div className="relative">
                   {/* <FloatingRPTag /> */}
                   <div className="prose prose-sm prose-slate">
