@@ -204,6 +204,7 @@ html {
   @apply prose prose-sm prose-headings:font-serif prose-headings:font-bold;
 }
 
+body:has(.cursor-help:hover) #cursor-tail > span,
 body:has(.cursor-pointer:hover) #cursor-tail > span,
 body:has(a:hover) #cursor-tail > span,
 body:has(button:hover) #cursor-tail > span {
