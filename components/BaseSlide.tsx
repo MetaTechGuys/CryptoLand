@@ -91,7 +91,7 @@ export function SlideHero({
             alt=""
             width={1600}
             height={900}
-            className="absolute inset-0 -z-1 h-screen w-screen"
+            className="absolute inset-0 -z-1 h-screen w-screen object-cover"
             loading="eager"
           />
         ) : null}

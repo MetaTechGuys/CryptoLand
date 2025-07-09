@@ -19,27 +19,28 @@ export default function BlogSlide({
     backgroundImage: `url(${blog.image.src})`,
   }
   return (
-    <motion.div
-      className={cn(
-        'fixed inset-0 z-10 flex items-center justify-center bg-cover bg-center bg-no-repeat',
-        className
-      )}
-      style={bgImgStyle}
-      initial={{ x: '50vw', opacity: 0 }}
-      animate={{ x: 0, opacity: 1 }}
-      exit={{ x: '50vw', opacity: 0 }}
-      transition={{ duration: 1 }}
-    >
-      <div className="scroll-lock" />
+    <section className="h-screen w-screen snap-center">
       <motion.div
         className={cn(
-          'prose-mdx m-16 max-h-2/3 overflow-auto bg-pink-50/70 p-8',
-          blog.className,
-          innerClassName
+          'fixed inset-0 flex items-center justify-center bg-cover bg-center bg-no-repeat',
+          className
         )}
+        style={bgImgStyle}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 1 }}
       >
-        {blog.content}
+        <motion.div
+          className={cn(
+            'prose-mdx m-16 max-h-2/3 overflow-auto bg-pink-50/70 p-8',
+            blog.className,
+            innerClassName
+          )}
+        >
+          {blog.content}
+        </motion.div>
       </motion.div>
-    </motion.div>
+    </section>
   )
 }

@@ -25,7 +25,7 @@ export default function Home({ children }: Readonly<PropsWithChildren>) {
     )
   }, [skipAnimates])
   return (
-    <main className="111 contents">
+    <main className="contents">
       <SlidesControls skipAnimates={skipAnimates} />
       <AnimatePresence mode="sync">
         {show ? children : <div className="h-screen" />}
