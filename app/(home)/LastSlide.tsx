@@ -4,31 +4,31 @@ import blogsData from '@/data/blogs'
 import {
   AnimatePresence,
   motion,
-  TargetAndTransition,
+  // TargetAndTransition,
   useInView,
 } from 'motion/react'
 import Link from 'next/link'
 import { ReactNode, useEffect, useRef } from 'react'
 
-const videoAnimationVariants: Record<
-  'initial' | 'enter' | 'exit',
-  TargetAndTransition
-> = {
-  initial: {
-    opacity: 0,
-    x: '100%',
-  },
-  enter: {
-    opacity: 0.75,
-    x: '20%',
-    transition: { delay: 0.15, duration: 0.7 },
-  },
-  exit: {
-    opacity: 0,
-    x: '-10%',
-    transition: { duration: 0.3 },
-  },
-}
+// const videoAnimationVariants: Record<
+//   'initial' | 'enter' | 'exit',
+//   TargetAndTransition
+// > = {
+//   initial: {
+//     opacity: 0,
+//     x: '100%',
+//   },
+//   enter: {
+//     opacity: 0.75,
+//     x: '20%',
+//     transition: { delay: 0.15, duration: 0.7 },
+//   },
+//   exit: {
+//     opacity: 0,
+//     x: '-10%',
+//     transition: { duration: 0.3 },
+//   },
+// }
 
 export default function LastSlide() {
   const ref = useRef<HTMLElement>(null)
@@ -52,15 +52,11 @@ export default function LastSlide() {
               }}
             >
               <AnimatePresence propagate>
-                {/* <motion.div
-                  key="bg"
-                  variants={videoAnimationVariants}
-                  className="absolute inset-0 flex items-center justify-center bg-[url(/wd-black.jpg)] bg-center bg-no-repeat"
-                  initial="initial"
-                  animate="enter"
-                  exit="exit"
-                /> */}
                 <div
+                  key="bg"
+                  className="absolute inset-0 flex items-center justify-center bg-[url(/wd-black.jpg)] bg-center bg-no-repeat"
+                />
+                {/* <div
                   key="vid-wrapper"
                   className="absolute inset-0 flex items-center justify-end bg-black"
                 >
@@ -101,7 +97,7 @@ export default function LastSlide() {
                       }
                     }}
                   />
-                </div>
+                </div> */}
                 <div key="pattern" className="bg-pattern absolute inset-0" />
                 {blogsData.map((bd, i) => (
                   <Link
