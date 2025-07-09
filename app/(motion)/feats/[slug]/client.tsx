@@ -1,5 +1,4 @@
 'use client'
-import { FloatingFeatureImage } from '@/components/FeatureCard'
 import { IFeature } from '@/data/feature'
 import { motion } from 'motion/react'
 import Link from 'next/link'
@@ -13,13 +12,13 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
   return (
     <div className="p-8 pt-35">
       <Link href="/feats">Back</Link>
-      <ViewTransition name={`feature-${feature.key}-root`} default="delay-3">
+      <ViewTransition name={`feature-${feature.id}-root`} default="delay-3">
         <div className="glass flex w-fit flex-col items-center justify-center gap-8 overflow-clip rounded-2xl bg-slate-50/60 p-8">
-          <FloatingFeatureImage
+          {/* <FloatingFeatureImage
             src={feature.image}
-            fkey={feature.key}
+            fkey={feature.id}
             className="-z-10"
-          />
+          /> */}
           <div className="relative">
             {/* <FloatingRPTag /> */}
             <div className="prose prose-sm prose-slate">

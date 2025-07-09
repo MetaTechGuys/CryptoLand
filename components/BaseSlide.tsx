@@ -7,7 +7,6 @@ import {
   useScroll,
   useVelocity,
 } from 'motion/react'
-import Image from 'next/image'
 import { CSSProperties, PropsWithChildren, useRef, useState } from 'react'
 
 export interface BaseSlideProps {

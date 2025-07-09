@@ -6,6 +6,6 @@ export default async function FeaturePage({
   params,
 }: PagePropsWithParams<'slug'>) {
   const { slug } = await params
-  const feature = featuresData.find((f) => f.key === slug)!
+  const feature = featuresData.find((f) => f.id === slug)!
   return <FeatureClient feature={feature} />
 }

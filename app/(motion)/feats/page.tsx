@@ -20,17 +20,17 @@ function FeaturesList() {
     <div className="grid size-full gap-4 p-8 pt-35 perspective-midrange md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {featuresData.map((fd) => (
         <Link
-          key={fd.key}
+          key={fd.id}
           className="contents"
-          href={`/feats/${fd.key}`}
+          href={`/feats/${fd.id}`}
           onClick={() => {
-            setFocus(fd.key)
+            setFocus(fd.id)
           }}
         >
           <FeatureCard
             feature={fd}
             className={
-              focus && focus !== fd.key
+              focus && focus !== fd.id
                 ? 'opacity-5 transition-opacity duration-300'
                 : ''
             }

@@ -1,4 +1,5 @@
 import content from '../contents'
+import featuresData from '../feature'
 import { ITourData } from './type'
 import { d2r } from './utils'
 
@@ -27,8 +28,8 @@ export const TourData: ITourData[] = [
   },
   {
     uid: 'tour-meeting',
-    title: content.services.items[3].title,
-    description: content.services.items[3].content,
+    title: featuresData[3].title,
+    description: featuresData[3].description[0],
     thumbnail: '/360/meeting-room-th.png',
     panorama: '/360/meeting-room.webp',
     // overlay: true,
@@ -73,8 +74,8 @@ export const TourData: ITourData[] = [
   },
   {
     uid: 'tour-gym',
-    title: content.services.items[0].title,
-    description: content.services.items[0].content,
+    title: featuresData[0].title,
+    description: featuresData[0].description[0],
     thumbnail: '/360/gym-th.png',
     panorama: '/360/gym.webp',
     // overlay: true,
