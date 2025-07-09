@@ -2,9 +2,10 @@
 import { BackEdge } from '@/components/BackEdge'
 import ContentSlide from '@/components/ContentSlide'
 import ScrollUp from '@/components/ScrollUp'
+import content from '@/data/contents'
 import img1 from '@/public/backgrounds/background-3.png'
-import img3 from '@/public/backgrounds/background-4.png'
-import img4 from '@/public/backgrounds/background-7.png'
+// import img3 from '@/public/backgrounds/background-4.png'
+// import img4 from '@/public/backgrounds/background-7.png'
 import Link from 'next/link'
 // import ScrollSpy from './ScrollSpy'
 
@@ -17,22 +18,12 @@ export default function Home() {
       <ScrollUp />
       <ContentSlide title="slide title 1" img={img1.src} className="me-auto!">
         <div className="prose prose-sm mx-auto my-35 w-full bg-pink-50/70 p-4 md:p-8">
-          <h1 className="font-serif capitalize">About Us</h1>
-          <p>
-            CryptoLand is your gateway to a future where services, assets, and
-            experiences are fully tokenized. We present a pioneering project
-            that aims to tokenize every aspect of a multi-functional
-            ecosystem—bridging the physical and digital worlds through
-            blockchain technology.
-          </p>
-          <p>
-            This project is designed to democratize access to ownership,
-            services, and entertainment by enabling secure, transparent, and
-            decentralized transactions via token-based systems.
-          </p>
+          <h1 className="font-serif capitalize">{content.about.title}</h1>
+          <p>{content.about.content}</p>
+          <p>{content.about.content2}</p>
         </div>
       </ContentSlide>
-      <ContentSlide title="slide title 3" img={img4.src} className="mx-auto!">
+      {/* <ContentSlide title="slide title 3" img={img4.src} className="mx-auto!">
         <div className="prose prose-sm my-35 bg-pink-50/70 p-4">
           <h1 className="font-serif capitalize">Our Ecosystem Includes</h1>
           <p>
@@ -77,7 +68,7 @@ export default function Home() {
             yours.
           </p>
         </div>
-      </ContentSlide>
+      </ContentSlide> */}
     </main>
   )
 }

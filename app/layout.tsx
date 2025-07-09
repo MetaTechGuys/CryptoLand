@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Saira, Orbitron } from 'next/font/google'
 import './globals.css'
 import './animations.css'
+import { ResponsiveHelper } from '@/components/ResponsiveHelper'
 // import PWACore from '@/utils/service-worker'
 
 const sans = Saira({
@@ -44,6 +45,7 @@ export default function RootLayout({
       >
         {children}
         {/* <PWACore /> */}
+        <ResponsiveHelper />
       </body>
     </html>
   )

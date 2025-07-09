@@ -7,10 +7,11 @@ import {
   useScroll,
   useVelocity,
 } from 'motion/react'
+import Image from 'next/image'
 import { CSSProperties, PropsWithChildren, useRef, useState } from 'react'
 
 export interface BaseSlideProps {
-  img?: string
+  img: string
   darken?: true
   className?: string
 }
@@ -72,6 +73,7 @@ export function SlideHero({
   darken,
   img,
 }: PropsWithChildren<BaseSlideProps>) {
+  // useView
   const bgImgStyle: CSSProperties = {
     backgroundImage: `url(${img})`,
   }
@@ -83,6 +85,17 @@ export function SlideHero({
         )}
         style={bgImgStyle}
       >
+        {img ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={img}
+            alt=""
+            width={1600}
+            height={900}
+            className="absolute inset-0 -z-1 h-screen w-screen"
+            loading="eager"
+          />
+        ) : null}
         <div className={darken ? 'size-full bg-[url(/bg-pattern.png)]' : ''}>
           {children}
         </div>

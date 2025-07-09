@@ -13,6 +13,7 @@ import { useState, unstable_ViewTransition as ViewTransition } from 'react'
 import GlareHover from './bits/GlareHover'
 import RichCanvas from './fibers/RichCanvas'
 import GlbObject from './fibers/GlbObject'
+import { ResponsiveHelper } from './ResponsiveHelper'
 
 interface FeatureCardProps {
   className?: string
@@ -23,45 +24,50 @@ interface FeatureCardProps {
 export function FeatureCard({ className, feature }: FeatureCardProps) {
   const f = motionValue(1)
   return (
-    <ViewTransition name={`feature-${feature.key}-root`} default="delay-3">
+    <ViewTransition name={`feature-${feature.id}-root`} default="delay-3">
       <GlareHover
         playOnce
         className={cn(
-          'glass group @container overflow-clip rounded-2xl bg-slate-50/60 hover:bg-slate-50/80',
+          'glass group @container min-h-fit overflow-clip rounded-2xl bg-slate-50/60 hover:bg-slate-50/80',
           'perspective-midrange',
           'cursor-pointer transition-all duration-100',
           className,
           feature.className
         )}
       >
-        <ViewTransition
-          name={`feature-${feature.key}-image`}
-          default="duration-9 delay-3"
-        >
-          {feature.image ? (
-            <FloatingFeatureImage
-              src={feature.image}
-              factor={f}
-              className="absolute right-16 bottom-8 -z-10 opacity-15"
-            />
-          ) : feature.model ? (
-            <div className="absolute right-16 bottom-8 -z-10 size-60 scale-75 opacity-0 transition duration-500 ease-in-out group-hover:scale-100 group-hover:opacity-80">
-              <RichCanvas>
-                <GlbObject {...feature.model} />
-              </RichCanvas>
-            </div>
-          ) : null}
-        </ViewTransition>
-        <div className="relative z-10 grid size-full auto-rows-min gap-4 p-8 @lg:grid-cols-2">
+        <div className="relative z-10 grid size-full auto-rows-min grid-cols-1 gap-4 p-8 @lg:grid-cols-2">
+          <ResponsiveHelper container />
           {/* <FloatingRPTag /> */}
-          <div className="prose prose-sm prose-slate max-w-full">
+          <div className="prose prose-sm prose-slate relative max-w-full">
             <h1 className="inline-block font-serif text-3xl">
               {feature.title}
             </h1>
-            <p>
-              {feature.description[0]} <a>Readmore</a>
-            </p>
+            <div className="lead truncate">{feature.lead}</div>
+            <p className="line-clamp-4">{feature.description[0]} </p>
+            <a className="absolute right-0 -bottom-2 text-xs italic opacity-50">
+              Readmore
+            </a>
           </div>
+          <ViewTransition
+            name={`feature-${feature.id}-image`}
+            default="duration-9 delay-3"
+          >
+            <div className="cus-hv-center absolute -z-10 size-full @lg:relative">
+              {feature.image ? (
+                <FloatingFeatureImage
+                  src={feature.image}
+                  factor={f}
+                  className="opacity-15 starting:open:opacity-0"
+                />
+              ) : feature.model ? (
+                <div className="size-50 opacity-30 transition duration-500 ease-in-out @lg:size-60 pointer-fine:scale-75 pointer-fine:opacity-0 pointer-fine:group-hover:scale-100 pointer-fine:group-hover:opacity-100">
+                  <RichCanvas className="size-50 translate-8">
+                    <GlbObject {...feature.model} />
+                  </RichCanvas>
+                </div>
+              ) : null}
+            </div>
+          </ViewTransition>
         </div>
       </GlareHover>
     </ViewTransition>

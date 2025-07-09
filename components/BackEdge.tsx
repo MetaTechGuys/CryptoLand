@@ -9,7 +9,7 @@ interface BackEdgeProps {
 export function BackEdge({ name }: BackEdgeProps) {
   return (
     <motion.div
-      className="cus-hv-center fixed inset-0 left-auto z-20 cursor-pointer gap-1 px-2 mix-blend-difference"
+      className="cus-hv-center fixed inset-y-0 right-2 z-20 cursor-pointer gap-1 px-2 mix-blend-difference"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: 1, x: -5, transition: { duration: 0.6, delay: 1 } }}
       whileHover={{

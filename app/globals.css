@@ -108,6 +108,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--google-sans);
   --font-serif: var(--google-serif);
+  
+  --breakpoint-2xs: 25rem;
+  --breakpoint-xs: 32rem;
 }
 @utility cus-hv-center {
   @apply flex flex-col justify-center items-center
