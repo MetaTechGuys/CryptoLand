@@ -45,7 +45,7 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
                   {/* <FloatingRPTag /> */}
                   <div className="prose prose-sm prose-slate">
                     <motion.h1
-                      className="inline-block text-center font-serif text-3xl"
+                      className="block text-center font-serif text-3xl"
                       initial={{ opacity: 0, x: -100 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1 }}
@@ -53,7 +53,7 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
                       {feature.title}
                     </motion.h1>
                     <motion.div
-                      className="lead inline-block text-center font-serif"
+                      className="lead block text-center font-serif"
                       initial={{ opacity: 0, x: -100 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 1 }}

@@ -102,7 +102,7 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
                 (typewrite > 0 && typewrite < title.length ? '_' : '')}
             </motion.h1>
             <motion.span
-              className="ps-3 text-xs tracking-[18px] uppercase opacity-50"
+              className="ps-3 text-xs tracking-[12px] text-nowrap uppercase opacity-50 md:tracking-[18px]"
               initial={{ scaleY: 0 }}
               animate={{ scaleY: 1 }}
               transition={{ delay: 2.3 }}
@@ -124,17 +124,25 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
             className="cus-hv-center fixed inset-0 top-auto bottom-4 z-20 mx-auto gap-2 fill-white"
           >
             <svg
-              className="size-12 fill-white"
               xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 42"
+              viewBox="0 0 16 24"
+              className="w-6 fill-current"
             >
-              <path d="M2,12H2V30a10,10,0,0,0,20,0V12A10,10,0,0,0,2,12ZM0,12a12,12,0,0,1,24,0V30A12,12,0,0,1,0,30V12Z"></path>
-              <g className="translate-y-3">
-                <path
-                  className="scroll-invitation-svg-line animate-bounce"
-                  d="M11,7v4a1,1,0,0,0,2,0V7a1,1,0,0,0-2,0Z"
-                ></path>
-              </g>
+              <path
+                fill-rule="evenodd"
+                className="translate-y-0 animate-pulse [animation-delay:200ms] [animation-timing-function:steps(2)]"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
+              <path
+                fill-rule="evenodd"
+                className="translate-y-1.5 animate-pulse [animation-delay:400ms] [animation-timing-function:steps(2)]"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
+              <path
+                fill-rule="evenodd"
+                className="translate-y-3 animate-pulse [animation-delay:600ms] [animation-timing-function:steps(2)]"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
             </svg>
             <span className="text-xs text-nowrap uppercase">scroll down</span>
           </motion.div>

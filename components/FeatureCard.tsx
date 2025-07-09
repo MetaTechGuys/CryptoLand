@@ -35,40 +35,40 @@ export function FeatureCard({ className, feature }: FeatureCardProps) {
           feature.className
         )}
       >
-        <div className="relative z-10 grid size-full auto-rows-min grid-cols-1 gap-4 p-8 @lg:grid-cols-2">
-          <ResponsiveHelper container />
+        <div className="relative z-10 grid size-full auto-rows-min grid-cols-1 grid-rows-1 gap-4 p-8">
           {/* <FloatingRPTag /> */}
           <div className="prose prose-sm prose-slate relative max-w-full">
-            <h1 className="inline-block font-serif text-3xl">
+            <ResponsiveHelper container />
+            <h1 className="block truncate font-serif text-3xl">
               {feature.title}
             </h1>
             <div className="lead truncate">{feature.lead}</div>
-            <p className="line-clamp-4">{feature.description[0]} </p>
+            <p className="line-clamp-4 @lg:w-1/2">{feature.description[0]} </p>
             <a className="absolute right-0 -bottom-2 text-xs italic opacity-50">
               Readmore
             </a>
           </div>
-          <ViewTransition
-            name={`feature-${feature.id}-image`}
-            default="duration-9 delay-3"
-          >
-            <div className="cus-hv-center absolute -z-10 size-full @lg:relative">
-              {feature.image ? (
-                <FloatingFeatureImage
-                  src={feature.image}
-                  factor={f}
-                  className="opacity-15 starting:open:opacity-0"
-                />
-              ) : feature.model ? (
-                <div className="size-50 opacity-30 transition duration-500 ease-in-out @lg:size-60 pointer-fine:scale-75 pointer-fine:opacity-0 pointer-fine:group-hover:scale-100 pointer-fine:group-hover:opacity-100">
-                  <RichCanvas className="size-50 translate-8">
-                    <GlbObject {...feature.model} />
-                  </RichCanvas>
-                </div>
-              ) : null}
-            </div>
-          </ViewTransition>
         </div>
+        <ViewTransition
+          name={`feature-${feature.id}-image`}
+          default="duration-9 delay-3"
+        >
+          <div className="cus-hv-center absolute right-0 bottom-0 -z-10 size-full @lg:w-1/2">
+            {feature.image ? (
+              <FloatingFeatureImage
+                src={feature.image}
+                factor={f}
+                className="opacity-15 starting:open:opacity-0"
+              />
+            ) : feature.model ? (
+              <div className="size-50 opacity-30 transition duration-500 ease-in-out @lg:size-60 pointer-fine:scale-75 pointer-fine:opacity-0 pointer-fine:group-hover:scale-100 pointer-fine:@max-md:group-hover:opacity-50 pointer-fine:@md:opacity-50 pointer-fine:@md:group-hover:opacity-100">
+                <RichCanvas className="size-50 translate-8">
+                  <GlbObject {...feature.model} />
+                </RichCanvas>
+              </div>
+            ) : null}
+          </div>
+        </ViewTransition>
       </GlareHover>
     </ViewTransition>
   )
