@@ -1,11 +1,12 @@
 import { cn } from '@/utils/tailwind'
 import type { Metadata } from 'next'
-import { Inter, Orbitron } from 'next/font/google'
+import { Saira, Orbitron } from 'next/font/google'
 import './globals.css'
 import './animations.css'
+import { ResponsiveHelper } from '@/components/ResponsiveHelper'
 // import PWACore from '@/utils/service-worker'
 
-const sans = Inter({
+const sans = Saira({
   variable: '--google-sans',
   subsets: ['latin'],
   weight: 'variable',
@@ -44,6 +45,7 @@ export default function RootLayout({
       >
         {children}
         {/* <PWACore /> */}
+        <ResponsiveHelper />
       </body>
     </html>
   )

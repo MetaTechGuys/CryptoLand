@@ -9,10 +9,6 @@ export interface GlbObjectProps extends ComponentProps<'group'> {
   autoRotate?: true
 }
 
-function isSameX(x0: number, x1: number, scale = 1000) {
-  return Math.ceil(x0 * scale) === Math.ceil(x1 * scale)
-}
-
 export default function GlbObject({
   src,
   autoRotate,

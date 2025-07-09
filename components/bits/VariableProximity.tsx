@@ -191,7 +191,6 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
         if (initialAnimateProgress.current > containerRect.width + 2000) {
           initialAnimate.current = false
         }
-        console.log('initial animate', initialAnimateProgress.current)
       }
     })
 

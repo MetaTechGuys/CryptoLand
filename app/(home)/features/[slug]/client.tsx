@@ -17,15 +17,15 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
     <main className="contents">
       <ScrollUp />
       <SlideHero darken key="features" img="/backgrounds/background-5.png">
-        <ViewTransition name={`feature-${feature.key}-root`}>
-          <div className="p-2 pt-35! md:p-8">
+        <ViewTransition name={`feature-${feature.id}-root`}>
+          <div className="h-full overflow-y-auto md:p-8 md:pt-35!">
             <ViewTransition
-              name={`feature-${feature.key}-root`}
+              name={`feature-${feature.id}-root`}
               default="delay-3"
             >
-              <div className="glass flex w-fit flex-col items-center justify-center gap-8 overflow-clip rounded-2xl bg-slate-50/60 p-8">
+              <div className="glass flex flex-col items-center gap-8 overflow-clip bg-slate-50/60 p-8 pr-12 max-md:min-h-full max-md:pt-40 md:w-fit md:justify-center md:rounded-2xl md:pr-8">
                 <ViewTransition
-                  name={`feature-${feature.key}-image`}
+                  name={`feature-${feature.id}-image`}
                   default="duration-9 delay-3"
                 >
                   {feature.image ? (
@@ -52,6 +52,14 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
                     >
                       {feature.title}
                     </motion.h1>
+                    <motion.div
+                      className="lead inline-block text-center font-serif"
+                      initial={{ opacity: 0, x: -100 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: 1 }}
+                    >
+                      {feature.lead}
+                    </motion.div>
 
                     {feature.description.map((d, p) => (
                       <motion.p
@@ -59,6 +67,7 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
                         initial={{ opacity: 0, x: -100 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: (p + 1) * 0.1 + 1 }}
+                        className="text-justify"
                       >
                         {d}
                       </motion.p>

@@ -22,7 +22,7 @@ export default function IntroSlide() {
   }, [])
   const ref = useRef<HTMLDivElement>(null)
   return (
-    <section className="h-[150vh] snap-center overflow-clip">
+    <section className="h-[110vh] snap-center overflow-clip">
       <AnimatePresence>
         <motion.div
           key="img"

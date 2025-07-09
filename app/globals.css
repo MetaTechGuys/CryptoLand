@@ -108,6 +108,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--google-sans);
   --font-serif: var(--google-serif);
+  
+  --breakpoint-2xs: 25rem;
+  --breakpoint-xs: 32rem;
 }
 @utility cus-hv-center {
   @apply flex flex-col justify-center items-center
@@ -204,6 +207,7 @@ html {
   @apply prose prose-sm prose-headings:font-serif prose-headings:font-bold;
 }
 
+body:has(.cursor-help:hover) #cursor-tail > span,
 body:has(.cursor-pointer:hover) #cursor-tail > span,
 body:has(a:hover) #cursor-tail > span,
 body:has(button:hover) #cursor-tail > span {

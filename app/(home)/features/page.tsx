@@ -20,21 +20,21 @@ function FeaturesList() {
   const [focus, setFocus] = useState('')
   return (
     <SlideHero darken key="features" img="/backgrounds/background-6.png">
-      <div className="grid size-full gap-2 overflow-auto p-2 pt-35! perspective-midrange md:grid-cols-2 md:gap-4 md:p-8 lg:grid-cols-3 xl:grid-cols-4">
+      <div className="grid size-full gap-2 overflow-auto p-2 pt-35! perspective-midrange max-lg:auto-rows-max md:grid-cols-2 md:gap-4 md:p-8 lg:grid-cols-3 xl:grid-cols-4">
         {featuresData.map((fd) => (
           <Link
-            key={fd.key}
+            key={fd.id}
             className="contents"
-            href={`/features/${fd.key}`}
+            href={`/features/${fd.id}`}
             onClick={() => {
-              setFocus(fd.key)
+              setFocus(fd.id)
             }}
             prefetch
           >
             <FeatureCard
               feature={fd}
               className={
-                focus && focus !== fd.key
+                focus && focus !== fd.id
                   ? 'opacity-5 transition-opacity duration-300'
                   : ''
               }

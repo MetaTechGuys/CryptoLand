@@ -232,10 +232,23 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
                   onClick={() => {
                     setOpen(false)
                   }}
-                  href="/about"
+                  href="/features"
                   className="contents"
                 >
-                  <MenuItem title="About Us" />
+                  <MenuItem title="Features" />
+                </Link>
+                <Link
+                  scroll
+                  onMouseOver={() => {
+                    setHover('Virtual Tour')
+                  }}
+                  onClick={() => {
+                    setOpen(false)
+                  }}
+                  href="/360v?intro"
+                  className="contents"
+                >
+                  <MenuItem title="Virtual Tour" />
                 </Link>
                 <Link
                   scroll
@@ -245,10 +258,10 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
                   onClick={() => {
                     setOpen(false)
                   }}
-                  href="/features"
+                  href="/about"
                   className="contents"
                 >
-                  <MenuItem title="Features" />
+                  <MenuItem title="About Us" />
                 </Link>
                 <Link
                   onMouseOver={() => {

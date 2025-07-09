@@ -1,4 +1,5 @@
 'use client'
+import Icon from '@/components/icon/Icon'
 import blogsData from '@/data/blogs'
 import {
   AnimatePresence,
@@ -7,7 +8,7 @@ import {
   useInView,
 } from 'motion/react'
 import Link from 'next/link'
-import { useEffect, useRef } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 
 const videoAnimationVariants: Record<
   'initial' | 'enter' | 'exit',
@@ -38,11 +39,11 @@ export default function LastSlide() {
   }, [inView])
   return (
     <section ref={ref} className="h-screen snap-end">
-      <AnimatePresence propagate>
+      <AnimatePresence>
         {inView ? (
           <>
             <motion.div
-              className="fixed inset-0 flex flex-col items-center justify-center gap-16 overflow-hidden md:items-start"
+              className="fixed inset-0 flex flex-col items-center justify-center gap-8 overflow-hidden bg-black md:items-start md:gap-16"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1, transition: { duration: 0.6 } }}
               exit={{
@@ -53,21 +54,11 @@ export default function LastSlide() {
               <AnimatePresence propagate>
                 {/* <motion.div
                   key="bg"
-                  className="absolute inset-0 flex items-center justify-center bg-black bg-[url(/wd-black.jpg)] bg-center bg-no-repeat"
-                  initial={{
-                    opacity: 0,
-                    backgroundPositionX: 'calc(50% - 300px)',
-                  }}
-                  animate={{
-                    opacity: 1,
-                    backgroundPositionX: 'calc(50% + 0px)',
-                    transition: { delay: 0.15, duration: 0.5 },
-                  }}
-                  exit={{
-                    opacity: 0,
-                    backgroundPositionX: 'calc(50% - 300px)',
-                    transition: { duration: 0.5 },
-                  }}
+                  variants={videoAnimationVariants}
+                  className="absolute inset-0 flex items-center justify-center bg-[url(/wd-black.jpg)] bg-center bg-no-repeat"
+                  initial="initial"
+                  animate="enter"
+                  exit="exit"
                 /> */}
                 <div
                   key="vid-wrapper"
@@ -78,7 +69,7 @@ export default function LastSlide() {
                     variants={videoAnimationVariants}
                     key="vid"
                     src="/wd-motion.webm"
-                    className="h-2/3 bg-black object-cover object-left"
+                    className="--blur-xs h-2/3 bg-black object-cover object-left"
                     muted
                     initial="initial"
                     animate="enter"
@@ -89,6 +80,7 @@ export default function LastSlide() {
                           vidRef.current.currentTime = 0
                           setTimeout(
                             () => {
+                              vidRef.current!.playbackRate = 0.5
                               vidRef.current!.play()
                             },
                             (videoAnimationVariants.enter.transition?.delay ??
@@ -108,20 +100,59 @@ export default function LastSlide() {
                         vidRef.current.pause()
                       }
                     }}
-                    onAnimationIteration={console.log.bind(console, '[ittt]')}
                   />
                 </div>
                 <div key="pattern" className="bg-pattern absolute inset-0" />
+                {blogsData.map((bd, i) => (
+                  <Link
+                    key={bd.key}
+                    href={`/blog/${bd.key}`}
+                    className="contents"
+                  >
+                    <MenuItem indexFactor={i / blogsData.length}>
+                      {bd.key}
+                    </MenuItem>
+                  </Link>
+                ))}
+                <div className="z-1 mt-8 flex gap-8 text-white sm:w-1/2 md:px-20 lg:px-40 xl:px-40">
+                  <a
+                    href="https://instagram.com/cryptoland"
+                    target="_blank"
+                    className="contents"
+                  >
+                    <SocialItem indexFactor={0}>
+                      <Icon name="instagram" className="size-8" />
+                    </SocialItem>
+                  </a>
+                  <a
+                    href="https://facebook.com/cryptoland"
+                    target="_blank"
+                    className="contents"
+                  >
+                    <SocialItem indexFactor={0.2}>
+                      <Icon name="facebook" className="size-8" />
+                    </SocialItem>
+                  </a>
+                  <a
+                    href="https://x.com/cryptoland"
+                    target="_blank"
+                    className="contents"
+                  >
+                    <SocialItem indexFactor={0.4}>
+                      <Icon name="twitter-x" className="size-8" />
+                    </SocialItem>
+                  </a>
+                  <a
+                    href="https://wa.me/cryptoland"
+                    target="_blank"
+                    className="contents"
+                  >
+                    <SocialItem indexFactor={0.6}>
+                      <Icon name="logo-whatsapp" className="size-8" />
+                    </SocialItem>
+                  </a>
+                </div>
               </AnimatePresence>
-              {blogsData.map((bd, i) => (
-                <Link
-                  key={bd.key}
-                  href={`/blog/${bd.key}`}
-                  className="contents"
-                >
-                  <MenuItem title={bd.key} indexFactor={i / blogsData.length} />
-                </Link>
-              ))}
             </motion.div>
           </>
         ) : null}
@@ -131,12 +162,11 @@ export default function LastSlide() {
 }
 
 interface MenuItemProps {
-  title: string
-  link?: string
+  children: ReactNode
   indexFactor?: number
 }
 
-function MenuItem({ title, indexFactor = 0 }: MenuItemProps) {
+function MenuItem({ children, indexFactor = 0 }: MenuItemProps) {
   return (
     <motion.div
       whileHover={{ y: -8 }}
@@ -157,7 +187,7 @@ function MenuItem({ title, indexFactor = 0 }: MenuItemProps) {
         }}
         className="pointer-events-none z-10 col-start-1 row-start-1"
       >
-        {title}
+        {children}
       </motion.div>
       <motion.div
         initial={{ x: -200, opacity: 0 }}
@@ -174,7 +204,51 @@ function MenuItem({ title, indexFactor = 0 }: MenuItemProps) {
         }}
         className="col-start-1 row-start-1 text-white"
       >
-        {title}
+        {children}
+      </motion.div>
+    </motion.div>
+  )
+}
+
+function SocialItem({ children, indexFactor = 0 }: MenuItemProps) {
+  return (
+    <motion.div
+      whileHover={{ y: -8 }}
+      whileTap={{ scale: 1.1 }}
+      className="relative grid grid-cols-1 grid-rows-1"
+    >
+      <motion.div
+        initial={{ y: -200, opacity: 0 }}
+        animate={{
+          y: 0,
+          opacity: 1,
+          transition: { delay: 0.7 + indexFactor * 0.5 },
+        }}
+        exit={{
+          y: 200,
+          opacity: 0,
+          transition: { delay: (1 - indexFactor) * 0.5 },
+        }}
+        className="pointer-events-none z-10 col-start-1 row-start-1"
+      >
+        {children}
+      </motion.div>
+      <motion.div
+        initial={{ y: -200, opacity: 0 }}
+        animate={{
+          x: 4,
+          y: 4,
+          opacity: 0.2,
+          transition: { delay: 0.75 + indexFactor * 0.5 },
+        }}
+        exit={{
+          y: 200,
+          opacity: 0,
+          transition: { delay: (1 - indexFactor) * 0.5 },
+        }}
+        className="col-start-1 row-start-1 text-white"
+      >
+        {children}
       </motion.div>
     </motion.div>
   )
