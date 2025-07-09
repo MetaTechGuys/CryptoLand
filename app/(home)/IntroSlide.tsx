@@ -52,9 +52,9 @@ export default function IntroSlide() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             // style={{ x: h1XOffset }}
-            className="text-shadow cus-hv-center absolute inset-0 mt-32 size-full select-none"
+            className="text-shadow cus-hv-center absolute inset-0 size-full select-none"
           >
-            <div className="flex w-full -translate-y-12 justify-end text-6xl font-bold text-white mix-blend-soft-light drop-shadow-white">
+            <div className="flex w-full -translate-y-12 justify-end text-7xl font-bold text-white mix-blend-soft-light drop-shadow-white md:text-8xl xl:text-9xl">
               <AnimatePresence>
                 {content.home.keywords.map((kw, k) =>
                   k === index ? (
@@ -76,7 +76,7 @@ export default function IntroSlide() {
               ref={ref}
               className="text-center font-light tracking-widest text-white"
             >
-              <div className="flex gap-8">
+              <div className="flex flex-col md:flex-row md:gap-8">
                 {content.home.slugan2.split(' ').map((kw, i) => (
                   <motion.div
                     key={i}

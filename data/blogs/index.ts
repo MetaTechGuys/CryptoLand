@@ -25,7 +25,7 @@ export interface IBlogPost {
   className?: string
 }
 
-const blogsData = [
+const blogsData: IBlogPost[] = [
   {
     key: 'discover',
     title: 'Discover a Unique Crypto-Powered Experience',
@@ -56,6 +56,6 @@ const blogsData = [
     content: createElement(Living),
     image: img5,
   },
-] satisfies IBlogPost[]
+]
 
 export default blogsData

@@ -1,9 +1,9 @@
-import { PagePropsWithParams } from '@/utils/next'
-import blogsData from '@/data/blogs'
-import { notFound } from 'next/navigation'
 import BlogSlide from '@/components/BlogSlide'
+import blogsData from '@/data/blogs'
+import { PagePropsWithParams } from '@/utils/next'
+import { notFound } from 'next/navigation'
 
-export default async function BlogLayout({
+export default async function BlogPage({
   params,
 }: PagePropsWithParams<'slug'>) {
   const { slug } = await params
@@ -11,5 +11,6 @@ export default async function BlogLayout({
   if (!post) {
     notFound()
   }
+
   return <BlogSlide blog={post} />
 }
