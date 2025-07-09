@@ -1,7 +1,6 @@
 'use client'
-import Cursor from '@/components/bits/Cursor'
 import { useHash } from '@/utils/route'
-import { AnimatePresence, useReducedMotion } from 'motion/react'
+import { ProgressProvider } from '@bprogress/next/app'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect, useState } from 'react'
 import SlidesControls from './Controls'
@@ -9,7 +8,6 @@ import LastSlide from './LastSlide'
 
 export default function Home({ children }: Readonly<PropsWithChildren>) {
   const [show, setShow] = useState(false)
-  const reduced = useReducedMotion()
   const hash = useHash()
   const pathn = usePathname()
   const haveHash = hash.length > 1
@@ -27,11 +25,15 @@ export default function Home({ children }: Readonly<PropsWithChildren>) {
   return (
     <main className="contents">
       <SlidesControls skipAnimates={skipAnimates} />
-      <AnimatePresence mode="sync">
+      <ProgressProvider
+        startOnLoad
+        color="var(--color-razzmatazz)"
+        height="4px"
+        spinnerPosition="top-left"
+      >
         {show ? children : <div className="h-screen" />}
-      </AnimatePresence>
+      </ProgressProvider>
       <LastSlide />
-      {!reduced && process.env.NODE_ENV === 'production' ? <Cursor /> : null}
     </main>
   )
 }

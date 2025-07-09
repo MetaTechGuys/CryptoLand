@@ -4,7 +4,6 @@ import { Saira, Orbitron } from 'next/font/google'
 import './globals.css'
 import './animations.css'
 import { ResponsiveHelper } from '@/components/ResponsiveHelper'
-// import PWACore from '@/utils/service-worker'
 
 const sans = Saira({
   variable: '--google-sans',

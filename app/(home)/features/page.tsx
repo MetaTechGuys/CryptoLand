@@ -19,7 +19,7 @@ export default function FeaturesPage() {
 function FeaturesList() {
   const [focus, setFocus] = useState('')
   return (
-    <SlideHero darken key="features" img="/backgrounds/background-6.png">
+    <SlideHero darken key="features" img="/backgrounds/background-5.png">
       <div className="grid size-full gap-2 overflow-auto p-2 pt-35! perspective-midrange max-lg:auto-rows-max md:grid-cols-2 md:gap-4 md:p-8 lg:grid-cols-3 xl:grid-cols-4">
         {featuresData.map((fd) => (
           <Link

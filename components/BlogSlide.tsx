@@ -33,7 +33,7 @@ export default function BlogSlide({
       >
         <motion.div
           className={cn(
-            'prose-mdx m-16 max-h-2/3 overflow-auto bg-pink-50/70 p-8',
+            'prose-mdx max-h-screen overflow-auto bg-pink-50/70 p-8 py-48 md:mt-24 md:max-h-2/3 md:p-8',
             blog.className,
             innerClassName
           )}
