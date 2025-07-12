@@ -7,7 +7,6 @@ import {
   AnimatePresence,
   easeInOut,
   motion,
-  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTime,
@@ -16,7 +15,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useLayoutEffect, useMemo, useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 
 const title = 'Cryptoland'
 
@@ -27,9 +26,14 @@ interface SlidesControlsProps {
 export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
   const hash = useHash()
   const haveHash = hash.length > 1
+  const screenWidth = useRef(640)
 
-  const screenWidth = window.innerWidth
-  const isSmall = screenWidth < 640
+  useLayoutEffect(() => {
+    if (typeof width !== undefined) {
+      screenWidth.current = window.innerWidth
+    }
+  })
+  const isSmall = screenWidth.current < 640
 
   function ctlRange(r: [number, number]): [number, number] {
     return !skipAnimates ? r : [-1, 0]
@@ -70,7 +74,7 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
   const x = useTransform(
     time,
     ctlRange([3000, 3500]),
-    [0, -1 * (isSmall ? (screenWidth - 200) / 2 : 0)],
+    [0, -1 * (isSmall ? (screenWidth.current - 200) / 2 : 0)],
     {
       clamp: true,
     }
