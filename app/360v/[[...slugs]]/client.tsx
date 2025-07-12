@@ -8,7 +8,7 @@ import { VisibleRangePlugin } from '@photo-sphere-viewer/visible-range-plugin'
 import Icon from '@/components/icon/Icon'
 import '@/components/web-components/custom-marker'
 import { SelectMarkerEvent, VTourData } from '@/data/tours'
-import { SphericalPosition, utils, Viewer } from '@photo-sphere-viewer/core'
+import { Viewer } from '@photo-sphere-viewer/core'
 import '@photo-sphere-viewer/markers-plugin/index.css'
 import { AnimatePresence, motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
@@ -35,7 +35,7 @@ interface VTourClientProps {
 
 export default function VTourClient({ tour }: VTourClientProps) {
   const router = useRouter()
-  const ref = useRef<Viewer>(null)
+  const ref = useRef(null)
   // const [node, setNode] = useState('node-1')
   const plugins = useMemo<PluginEntry[]>(() => {
     const plugins: Array<PluginEntry | undefined> = [
@@ -59,29 +59,27 @@ export default function VTourClient({ tour }: VTourClientProps) {
         ({ marker }: SelectMarkerEvent) => {
           if (typeof marker.data?.uid !== 'undefined') {
             if (marker.config.position && ref.current) {
-              const markerPos = marker.config.position as SphericalPosition
-
-              console.log(
-                'gggg',
-                {
-                  pitch: +markerPos.pitch,
-                  yaw: +markerPos.yaw,
-                  zoom: 5,
-                  speed: 2500,
-                  easing: 'inOutQuad',
-                },
-                ref.current.animate
-              )
-
-              ref.current.animate({
-                pitch: +markerPos.pitch,
-                yaw: +markerPos.yaw,
-                zoom: 5,
-                speed: 2500,
-                easing: 'inOutQuad',
-              })
-              router.push(`/360v/${marker.data.uid}`)
+              // const markerPos = marker.config.position as SphericalPosition
+              // console.log(
+              //   'gggg',
+              //   {
+              //     pitch: +markerPos.pitch,
+              //     yaw: +markerPos.yaw,
+              //     zoom: 5,
+              //     speed: 2500,
+              //     easing: 'inOutQuad',
+              //   },
+              //   ref.current.animate
+              // )
+              // ref.current.animate({
+              //   pitch: +markerPos.pitch,
+              //   yaw: +markerPos.yaw,
+              //   zoom: 5,
+              //   speed: 2500,
+              //   easing: 'inOutQuad',
+              // })
             }
+            router.push(`/360v/${marker.data.uid}`)
           }
         }
       )
