@@ -3,8 +3,8 @@ import { useHash } from '@/utils/route'
 import { ProgressProvider } from '@bprogress/next/app'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect, useState } from 'react'
-import SlidesControls from './Controls'
-import LastSlide from './LastSlide'
+import SlidesControls from '../../components/layout/Controls'
+import LastSlide from '../../components/layout/LastSlide'
 
 export default function Home({ children }: Readonly<PropsWithChildren>) {
   const [show, setShow] = useState(false)

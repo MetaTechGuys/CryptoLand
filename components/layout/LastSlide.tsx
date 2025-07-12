@@ -106,7 +106,7 @@ export default function LastSlide() {
                     className="contents"
                   >
                     <MenuItem indexFactor={i / blogsData.length}>
-                      {bd.key}
+                      {bd.title}
                     </MenuItem>
                   </Link>
                 ))}
@@ -167,7 +167,7 @@ function MenuItem({ children, indexFactor = 0 }: MenuItemProps) {
     <motion.div
       whileHover={{ y: -8 }}
       whileTap={{ scale: 1.1 }}
-      className="relative grid grid-cols-1 grid-rows-1 text-center font-serif text-3xl font-bold uppercase sm:w-1/2 md:px-20 md:text-start lg:px-40 xl:px-40"
+      className="relative grid grid-cols-1 grid-rows-1 text-center font-serif text-xl font-bold uppercase sm:w-1/2 sm:text-3xl md:px-20 md:text-start lg:px-40 xl:px-40"
     >
       <motion.div
         initial={{ x: -200, opacity: 0 }}
@@ -181,7 +181,7 @@ function MenuItem({ children, indexFactor = 0 }: MenuItemProps) {
           opacity: 0,
           transition: { delay: (1 - indexFactor) * 0.5 },
         }}
-        className="pointer-events-none z-10 col-start-1 row-start-1"
+        className="pointer-events-none z-10 col-start-1 row-start-1 text-nowrap"
       >
         {children}
       </motion.div>
@@ -198,7 +198,7 @@ function MenuItem({ children, indexFactor = 0 }: MenuItemProps) {
           opacity: 0,
           transition: { delay: (1 - indexFactor) * 0.5 },
         }}
-        className="col-start-1 row-start-1 text-white"
+        className="col-start-1 row-start-1 text-nowrap text-white"
       >
         {children}
       </motion.div>

@@ -2,10 +2,12 @@
 import BurgerIcon from '@/components/icon/burger'
 import logo from '@/public/logo/cryptoland-white-mono-sm.png'
 import { useHash } from '@/utils/route'
+import { cn } from '@/utils/tailwind'
 import {
   AnimatePresence,
   easeInOut,
   motion,
+  useMotionValue,
   useMotionValueEvent,
   useScroll,
   useTime,
@@ -14,7 +16,7 @@ import {
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { useLayoutEffect, useState } from 'react'
+import { useLayoutEffect, useMemo, useState } from 'react'
 
 const title = 'Cryptoland'
 
@@ -25,6 +27,9 @@ interface SlidesControlsProps {
 export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
   const hash = useHash()
   const haveHash = hash.length > 1
+
+  const screenWidth = window.innerWidth
+  const isSmall = screenWidth < 640
 
   function ctlRange(r: [number, number]): [number, number] {
     return !skipAnimates ? r : [-1, 0]
@@ -41,6 +46,7 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
   const [ended, setEnded] = useState(false)
   const [typewrite, setTypewrite] = useState(!skipAnimates ? 0 : title.length)
   const time = useTime()
+  // const time = useMotionValue(1300)
   const rotateY = useTransform(time, ctlRange([500, 700]), [90, 0], {
     clamp: true,
   })
@@ -58,10 +64,18 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
   const { scrollYProgress } = useScroll()
   const isEnded = useTransform(() => !!Math.floor(scrollYProgress.get()))
   useMotionValueEvent(isEnded, 'change', setEnded)
-  const y = useTransform(time, ctlRange([3000, 3500]), [400, 18], {
+  const y = useTransform(time, ctlRange([3000, 3500]), [400, 20], {
     clamp: true,
   })
-  const scale = useTransform(time, ctlRange([3000, 3500]), [3, 1], {
+  const x = useTransform(
+    time,
+    ctlRange([3000, 3500]),
+    [0, -1 * (isSmall ? (screenWidth - 200) / 2 : 0)],
+    {
+      clamp: true,
+    }
+  )
+  const scale = useTransform(time, ctlRange([3000, 3500]), [2, 1], {
     clamp: true,
   })
   useMotionValueEvent(width, 'change', (w) => {
@@ -82,18 +96,31 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
     window.scroll({ top: 0 })
   }, [])
 
+  const scrollTop = () => {
+    if (window.location.pathname === '/')
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   return (
     <>
       <motion.div
-        className="fixed inset-0 bottom-auto z-40 ms-8 flex max-w-min min-w-50 origin-left scale-100! flex-col items-center gap-4 py-4 mix-blend-hard-light sm:max-w-full sm:origin-center sm:justify-center sm:ps-0"
-        style={{ y, scale }}
+        className={cn(
+          'fixed inset-0 bottom-auto z-40 w-screen',
+          'flex flex-col items-center gap-4',
+          'mix-blend-hard-light',
+          'origin-center'
+        )}
+        style={{ y, x, scale }}
       >
-        <Link className="contents" href="/">
-          <motion.div style={{ rotateY, scale: iconScale }}>
+        <Link className="contents" href="/" onClick={scrollTop}>
+          <motion.div
+            style={{ rotateY, scale: iconScale }}
+            className="origin-center"
+          >
             <Image
               src={logo}
               alt={title}
-              className="h-8 w-min brightness-[100]"
+              className="h-8 w-min max-w-screen brightness-[100]"
             />
           </motion.div>
           <div className="cus-hv-center">

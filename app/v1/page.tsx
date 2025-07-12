@@ -2,7 +2,7 @@
 import { useCacheProgress } from '@/utils/service-worker'
 import IntroSlide from '../(home)/IntroSlide'
 import { PageTransition } from '@/components/PageTransition'
-import LastSlide from '../(home)/LastSlide'
+import LastSlide from '../../components/layout/LastSlide'
 
 export default function Home() {
   const { progress } = useCacheProgress()

@@ -4,7 +4,7 @@ import { useHash } from '@/utils/route'
 import { AnimatePresence } from 'motion/react'
 import { usePathname } from 'next/navigation'
 import { PropsWithChildren, useEffect, useState } from 'react'
-import SlidesControls from '../(home)/Controls'
+import SlidesControls from '../../components/layout/Controls'
 
 export default function Home({ children }: Readonly<PropsWithChildren>) {
   const [show, setShow] = useState(false)

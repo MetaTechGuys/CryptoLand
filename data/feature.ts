@@ -1,11 +1,11 @@
 import { StaticImageData } from 'next/image'
 
-// import changeShape from '@/public/coins/dash.svg'
-// import chartShape from '@/public/coins/ethereum.svg'
-// import cvShape from '@/public/coins/monero.svg'
-// import settingsShape from '@/public/coins/ripple.svg'
-// import starShape from '@/public/coins/tether.svg'
-// import targetShape from '@/public/coins/tron.svg'
+import artImage from '@/public/features/art.webp'
+import clubImage from '@/public/features/cryptoclub.webp'
+import sportImage from '@/public/features/sport_n_gaming.webp'
+import workshopImage from '@/public/features/workshop.webp'
+import realstateImage from '@/public/features/realstate.webp'
+
 import { GlbObjectProps } from '@/components/fibers/GlbObject'
 
 export interface IFeature {
@@ -26,7 +26,7 @@ const featuresData: IFeature[] = [
     description: [
       `Whether you're hitting the gym, joining a virtual tournament, or engaging in an augmented reality sports challenge, Crypto Land brings fitness and gaming into the token economy. Use your tokens to access exclusive events, earn rewards, and level up your performance all on-chain.`,
     ],
-    // image: chartShape,
+    image: sportImage,
     model: { src: '/glbs/dice.glb', scale: 7 },
     className: 'sm:col-span-2',
   },
@@ -37,7 +37,7 @@ const featuresData: IFeature[] = [
     description: [
       `From NFT galleries and interactive performances to live shows with digital avatars every creative moment at Crypto Land can become an asset. Your art is not just showcased it’s owned, traded, and celebrated on the blockchain.`,
     ],
-    // image: changeShape,
+    image: artImage,
     model: { src: '/glbs/pink-gem.glb', scale: 700 },
   },
   {
@@ -47,7 +47,7 @@ const featuresData: IFeature[] = [
     description: [
       `The Crypto Club is your access point to a world of decentralized finance, exclusive meetups, NFT launches, and blockchain conversations. Members use their tokens to unlock VIP features, attend workshops, and participate in decision-making for upcoming projects.`,
     ],
-    // image: cvShape,
+    image: clubImage,
     model: { src: '/glbs/jewel.glb', scale: 1 },
   },
   {
@@ -57,18 +57,18 @@ const featuresData: IFeature[] = [
     description: [
       `All courses and workshops in Crypto Land are tokenized from attendance and certification to participation points. Your educational journey becomes an asset, secured and verifiable on-chain. Gain knowledge, earn tokens, and build credentials for the Web3 era.`,
     ],
-    // image: settingsShape,
+    image: workshopImage,
     model: { src: '/glbs/box.glb', scale: 5.5 },
     className: 'xl:col-span-2',
   },
   {
-    id: 'ownership',
+    id: 'realestate',
     title: `Real Estate & Tokenized Ownership`,
     lead: `The Future of Property Ownership`,
     description: [
       `Through our token system, you can own fractional shares of real real estate projects in the UAE. Invest, trade, or earn rental yield from blockchain-verified ownership no paperwork, just smart contracts. Real assets, real income, real-time access.`,
     ],
-    // image: starShape,
+    image: realstateImage,
     model: { src: '/glbs/icosahedron.glb', scale: 0.2 },
     className: 'xl:col-span-2',
   },

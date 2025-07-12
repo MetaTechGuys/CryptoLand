@@ -31,7 +31,7 @@ export default function GlbObject({
         root.current.rotation.x = dy / (1000 + rnd.current.r1)
         root.current.rotation.y = dx / (500 + rnd.current.r2)
         if (group.current) {
-          group.current.rotation.y += delta / 10
+          group.current.rotation.y += (delta / 10) % (Math.PI * 2)
         }
       }
     }

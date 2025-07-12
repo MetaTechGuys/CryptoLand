@@ -1,9 +1,9 @@
 'use client'
 import { PropsWithChildren } from 'react'
-import SlidesControls from '../(home)/Controls'
+import SlidesControls from '../../components/layout/Controls'
 import { useHash } from '@/utils/route'
 import { usePathname } from 'next/navigation'
-import LastSlide from '../(home)/LastSlide'
+import LastSlide from '../../components/layout/LastSlide'
 
 export default function Layout({ children }: Readonly<PropsWithChildren>) {
   const hash = useHash()

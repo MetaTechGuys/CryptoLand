@@ -5,7 +5,7 @@ import Image from 'next/image'
 // import GlareHover from '@/components/bits/GlareHover'
 import VariableProximity from '@/components/bits/VariableProximity'
 import content from '@/data/contents'
-import img from '@/public/oystra-neon.png'
+import img from '@/public/oystra-neon.webp'
 import { useEffect, useRef, useState } from 'react'
 
 export default function IntroSlide() {
@@ -52,7 +52,7 @@ export default function IntroSlide() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
             // style={{ x: h1XOffset }}
-            className="text-shadow cus-hv-center absolute inset-0 size-full select-none"
+            className="text-shadow cus-hv-center absolute inset-0 mt-12 size-full select-none"
           >
             <div className="flex w-full -translate-y-12 justify-end text-7xl font-bold text-white mix-blend-soft-light drop-shadow-white md:text-8xl xl:text-9xl">
               <AnimatePresence>
@@ -76,8 +76,8 @@ export default function IntroSlide() {
               ref={ref}
               className="text-center font-light tracking-widest text-white"
             >
-              <div className="flex flex-col md:flex-row md:gap-8">
-                {content.home.slugan2.split(' ').map((kw, i) => (
+              <div className="flex flex-col lg:flex-row lg:gap-8">
+                {content.home.slugan2.split('/').map((kw, i) => (
                   <motion.div
                     key={i}
                     initial={{ opacity: 0, y: -50 }}
@@ -92,7 +92,7 @@ export default function IntroSlide() {
                       radius={100}
                       initialShow
                       falloff="exponential"
-                      className="text-5xl"
+                      className="text-5xl text-nowrap"
                     />
                   </motion.div>
                 ))}
