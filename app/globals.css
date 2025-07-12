@@ -215,9 +215,9 @@ body:has(button:hover) #cursor-tail > span {
   transform: scale(2.1);
   /* backdrop-filter: grayscale() invert() brightness(80%); */
 }
-body.env-prod * {
+/* body.env-prod * {
   cursor: none!important;
-}
+} */
 
 @utility animate-shine {
   color: transparent; /* Adjust this color to change intensity/style */
