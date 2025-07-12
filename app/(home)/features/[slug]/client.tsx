@@ -18,7 +18,7 @@ export default function FeatureClient({ feature }: FeatureClientProps) {
       <SlideHero
         darken
         key="features"
-        img={feature.image?.src ?? '/backgrounds/background-5.png'}
+        img={feature.image?.src ?? '/backgrounds/background-5.webp'}
       >
         <ViewTransition name={`feature-${feature.id}-root`}>
           <div className="h-full overflow-y-auto md:p-8 md:pt-35!">

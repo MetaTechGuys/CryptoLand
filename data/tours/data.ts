@@ -9,7 +9,7 @@ export const TourData: ITourData[] = [
     title: 'Cryptoland',
     description: content.home.slugan2,
     thumbnail: '/360/root-th.webp',
-    panorama: '/360/root.jpg',
+    panorama: '/360/root.webp',
     // overlay: true,
     links: [
       {

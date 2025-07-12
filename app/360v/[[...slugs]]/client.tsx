@@ -8,11 +8,13 @@ import { VisibleRangePlugin } from '@photo-sphere-viewer/visible-range-plugin'
 import Icon from '@/components/icon/Icon'
 import '@/components/web-components/custom-marker'
 import { SelectMarkerEvent, VTourData } from '@/data/tours'
-import { Viewer } from '@photo-sphere-viewer/core'
+import { SphericalPosition, utils, Viewer } from '@photo-sphere-viewer/core'
 import '@photo-sphere-viewer/markers-plugin/index.css'
 import { AnimatePresence, motion } from 'motion/react'
 import { useRouter } from 'next/navigation'
 import { ComponentProps, useCallback, useMemo, useRef, useState } from 'react'
+
+import { unstable_ViewTransition as ViewTransition } from 'react'
 
 const OverlaysPluginConfig = {
   overlays: [
@@ -33,7 +35,7 @@ interface VTourClientProps {
 
 export default function VTourClient({ tour }: VTourClientProps) {
   const router = useRouter()
-  const ref = useRef(null)
+  const ref = useRef<Viewer>(null)
   // const [node, setNode] = useState('node-1')
   const plugins = useMemo<PluginEntry[]>(() => {
     const plugins: Array<PluginEntry | undefined> = [
@@ -56,7 +58,30 @@ export default function VTourClient({ tour }: VTourClientProps) {
         'select-marker',
         ({ marker }: SelectMarkerEvent) => {
           if (typeof marker.data?.uid !== 'undefined') {
-            router.push(`/360v/${marker.data.uid}`)
+            if (marker.config.position && ref.current) {
+              const markerPos = marker.config.position as SphericalPosition
+
+              console.log(
+                'gggg',
+                {
+                  pitch: +markerPos.pitch,
+                  yaw: +markerPos.yaw,
+                  zoom: 5,
+                  speed: 2500,
+                  easing: 'inOutQuad',
+                },
+                ref.current.animate
+              )
+
+              ref.current.animate({
+                pitch: +markerPos.pitch,
+                yaw: +markerPos.yaw,
+                zoom: 5,
+                speed: 2500,
+                easing: 'inOutQuad',
+              })
+              router.push(`/360v/${marker.data.uid}`)
+            }
           }
         }
       )
@@ -65,9 +90,8 @@ export default function VTourClient({ tour }: VTourClientProps) {
   )
   const [showDetail, setShowDetail] = useState(tour.uid !== '')
   return (
-    <>
+    <ViewTransition name="page" default="auto">
       <ReactPhotoSphereViewer
-        // src="/360/gym.webp"
         key={tour.uid}
         src={tour.panorama}
         ref={ref}
@@ -124,6 +148,6 @@ export default function VTourClient({ tour }: VTourClientProps) {
       >
         <Icon className="pointer-events-none size-10" name="arrow-back" />
       </button>
-    </>
+    </ViewTransition>
   )
 }

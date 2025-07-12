@@ -4,7 +4,7 @@ import { IBlogPost } from '@/data/blogs'
 import Link from 'next/link'
 
 import About from '@/data/blogs/About.mdx'
-import img0 from '@/public/backgrounds/background-3.png'
+import img0 from '@/public/backgrounds/background-3.webp'
 import { createElement } from 'react'
 
 const aboutBlogPost: IBlogPost = {

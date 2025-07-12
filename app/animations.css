@@ -134,6 +134,7 @@
     transform: translateY(-100vh);
 	}
 }
+
 ::view-transition-group(.duration-9) {
   animation-duration: 0.9s;
 }
