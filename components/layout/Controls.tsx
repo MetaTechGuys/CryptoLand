@@ -241,13 +241,13 @@ export default function SlidesControls({ skipAnimates }: SlidesControlsProps) {
               </AnimatePresence>
             </motion.div>
             <motion.div
-              className="fixed top-0 z-30 flex h-screen w-full flex-col items-center justify-center gap-8 text-center"
+              className="fixed top-0 z-30 h-screen w-full pt-36 pb-[10vh]"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
             >
               <motion.div
-                className="fixed top-0 z-30 flex h-screen w-full flex-col items-center justify-center gap-8 text-center"
+                className="flex size-full flex-col items-center justify-center gap-[2vh] text-center"
                 exit={{ opacity: 0 }}
               >
                 <Link
