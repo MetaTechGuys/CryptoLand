@@ -9,6 +9,7 @@ import {
 } from 'motion/react'
 import Link from 'next/link'
 import { ReactNode, useEffect, useRef } from 'react'
+import pckg from '@/package.json'
 
 // const videoAnimationVariants: Record<
 //   'initial' | 'enter' | 'exit',
@@ -149,6 +150,11 @@ export default function LastSlide() {
                   </a>
                 </div>
               </AnimatePresence>
+              <div className="text-foreground fixed start-2 bottom-1 z-50 text-xs">
+                <span title={new Date(pckg['version.stamp']).toLocaleString()}>
+                  v{pckg.version}
+                </span>
+              </div>
             </motion.div>
           </>
         ) : null}

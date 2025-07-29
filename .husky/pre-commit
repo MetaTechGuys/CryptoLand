@@ -1,0 +1,4 @@
+npm run lint
+npm run tsck
+node ./.husky/stamp.js
+npm --no-git-tag-version version patch && git add package*.json
